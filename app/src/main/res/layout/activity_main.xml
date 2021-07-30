@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/protocolselector"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="105dp" />
+
+
+        <TextView
+            android:id="@+id/dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="105dp"
+            android:layout_toRightOf="@+id/protocolselector"
+            android:text="://"
+            android:textSize="20dp"></TextView>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/amirlay"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="80dp"
+            android:layout_toRightOf="@+id/dots">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_link"
+                android:layout_width="220dp"
+                android:layout_height="70dp"
+                android:background="@drawable/custom_editcall"
+                android:drawableRight="@drawable/ic_baseline_insert_link_24"
+                android:drawablePadding="12dp"
+                android:hint="لینک خود را وارد کنید"
+                android:maxLines="1"
+                android:outlineSpotShadowColor="#BB12B0"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/amirlay"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="0dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:background="@drawable/button_gradient">
+
+                <RelativeLayout
+                    android:id="@+id/btn_giveshorturl"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+
+                    android:focusable="true">
+
+                    <TextView
+                        android:id="@+id/gradient_button_3_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/byekan"
+                        android:lines="1"
+                        android:text="دریافت کوتاه لینک"
+
+                        android:textColor="@color/white"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </FrameLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+
+</RelativeLayout>
