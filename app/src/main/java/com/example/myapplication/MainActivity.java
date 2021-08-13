@@ -1,27 +1,19 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
-import android.content.Intent;
-import android.graphics.SweepGradient;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.andreseko.SweetAlert.SweetAlertDialog;
 import com.example.myapplication.MyConnection.BitlyAPI;
-import com.example.myapplication.MyConnection.GEtaaj;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -39,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public static final String BASE_URL = "https://api-ssl.bitly.com";
+    public static final String BASE_URL = "https://tinyurl.com/";
     public static final String[] BASE_PROTOCOLS = {"انتخاب کنید..","http","https","rtsp"};
 
     TextInputEditText editText;
@@ -128,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void GetshortLinkFromBitly(String validurl) {
+    private void GetshortLinkFromBitly(String validurlstr) {
 
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
@@ -142,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         BitlyAPI bitlyAPI = retrofit.create(BitlyAPI.class);
-        Call<ResponseBody> responseBodyCall = bitlyAPI.GETSHORTLINK(new ShortlinkDataModel("bit.ly", validurl));
+        Call<ResponseBody> responseBodyCall = bitlyAPI.GETSHORTLINK(validurlstr);
         responseBodyCall.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {

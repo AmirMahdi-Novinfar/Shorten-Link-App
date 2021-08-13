@@ -8,6 +8,7 @@
 
 
     <RelativeLayout
+        android:id="@+id/rellayone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -16,7 +17,7 @@
             android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="105dp" />
+            android:layout_marginTop="65dp" />
 
 
         <TextView
@@ -24,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="105dp"
+            android:layout_marginTop="65dp"
             android:layout_toRightOf="@+id/protocolselector"
             android:text="://"
             android:textSize="20dp"></TextView>
@@ -35,7 +36,7 @@
             android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="35dp"
             android:layout_toRightOf="@+id/dots">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -99,6 +100,77 @@
             </FrameLayout>
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rellaytwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rellayone">
+
+
+        <Button
+            android:id="@+id/open_shorten_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/byekan"
+            android:text=" باز کردن لینک کوتاه شده"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"></Button>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/open_shorten_link"
+            android:fontFamily="@font/byekan"
+            android:text="کپی لینک کوتاه شده"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"></Button>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rellaythree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rellaytwo">
+
+
+        <Button
+            android:id="@+id/Create_QRCODE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/byekan"
+            android:text="تولید QRCODE لینک کوتاه شده"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"></Button>
+
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rellaythree"
+        android:text="لینک کوتاه شده :"
+        android:fontFamily="@font/byekan"
+        android:id="@+id/show_shortenlink"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+     ></TextView>
 
 
 </RelativeLayout>
