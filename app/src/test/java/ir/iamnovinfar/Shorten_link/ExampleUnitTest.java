@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package ir.iamnovinfar.Shorten_link;
 
 import org.junit.Test;
 

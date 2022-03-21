@@ -7,7 +7,7 @@ android {
     buildToolsVersion '30.0.3'
 
     defaultConfig {
-        applicationId "com.example.myapplication"
+        applicationId 'ir.iamnovinfar.shorten_link'
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
@@ -41,6 +41,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.6.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
     implementation 'com.github.andreseko:sweet-alert-dialog:1.0.6'
+    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'
 
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
 

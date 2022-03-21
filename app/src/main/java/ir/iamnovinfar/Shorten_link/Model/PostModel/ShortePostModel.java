@@ -1,4 +1,4 @@
-package com.example.myapplication.Model.PostModel;
+package ir.iamnovinfar.Shorten_link.Model.PostModel;
 
 public class ShortePostModel {
 

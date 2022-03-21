@@ -1,16 +1,12 @@
-package com.example.myapplication.MyConnection;
+package ir.iamnovinfar.Shorten_link.MyConnection;
 
-import com.example.myapplication.Model.PostModel.ShortePostModel;
+import ir.iamnovinfar.Shorten_link.Model.PostModel.ShortePostModel;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.Headers;
-import retrofit2.http.POST;
 import retrofit2.http.PUT;
-import retrofit2.http.Query;
 
 public interface Shorte {
 
