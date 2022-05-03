@@ -2,27 +2,35 @@ package ir.iamnovinfar.Shorten_link;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andreseko.SweetAlert.SweetAlertDialog;
 import com.example.myapplication.R;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
@@ -32,6 +40,9 @@ import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+
+import saman.zamani.persiandate.PersianDate;
 
 public class ToolsActivity extends AppCompatActivity {
     TextView shorten_txt_url;
@@ -48,6 +59,7 @@ public class ToolsActivity extends AppCompatActivity {
         SetupViews();
         String link = getIntent().getStringExtra("finaldata");
         shorten_txt_url.setText(link + "");
+        showMessage();
 
 
         copy.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +94,6 @@ public class ToolsActivity extends AppCompatActivity {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(link));
                 startActivity(i);
-                Toast.makeText(ToolsActivity.this, "as", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -108,6 +119,80 @@ public class ToolsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void showMessage() {
+
+        String timeCreate = getIntent().getStringExtra("timeCreate");
+        String status = getIntent().getStringExtra("status");
+
+
+        int year = Integer.parseInt(timeCreate.substring(0, timeCreate.indexOf("-")));
+        int month = Integer.parseInt(timeCreate.substring(5, 7));
+        int day = Integer.parseInt(timeCreate.substring(8, 10));
+
+
+        PersianDate persianDate = new PersianDate();
+        persianDate.gregorian_to_jalali(year, month, day);
+        com.andreseko.SweetAlert.SweetAlertDialog sweetAlertDialog;
+
+
+        if (status.contains("New link Successfully Added !")) {
+            sweetAlertDialog=new com.andreseko.SweetAlert.SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
+            sweetAlertDialog.setTitle("تبریک");
+            sweetAlertDialog.setContentText("لینک درتاریخ " + persianDate.getShYear() + "/" + persianDate.getShMonth() + "/" + persianDate.getShDay() + " " + "کوتاه شد...");
+            sweetAlertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    TextView text = (TextView) sweetAlertDialog.findViewById(R.id.content_text);
+                    text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                    text.setGravity(Gravity.RIGHT);
+                    final Typeface typeface = ResourcesCompat.getFont(ToolsActivity.this, R.font.byekan);
+                    text.setTypeface(typeface);
+                    TextView text2 = (TextView) sweetAlertDialog.findViewById(R.id.title_text);
+                    text2.setTypeface(typeface);
+                }
+            });
+
+            sweetAlertDialog.setConfirmButton("باشه", new com.andreseko.SweetAlert.SweetAlertDialog.OnSweetClickListener() {
+                @Override
+                public void onClick(com.andreseko.SweetAlert.SweetAlertDialog sweetAlertDialog) {
+               sweetAlertDialog.dismiss();
+                }
+            });
+            sweetAlertDialog.setCancelable(true);
+            sweetAlertDialog.show();
+
+        } else if (status.contains("Link already Exist !")) {
+
+
+            sweetAlertDialog=new com.andreseko.SweetAlert.SweetAlertDialog(this, com.andreseko.SweetAlert.SweetAlertDialog.WARNING_TYPE);
+            sweetAlertDialog.setTitle("هشدار!");
+            sweetAlertDialog.setContentText("لینک درتاریخ" + persianDate.getShYear() + "/" + persianDate.getShMonth() + "/" + persianDate.getShDay()  + "کوتاه شده بود");
+            sweetAlertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                @Override
+                public void onShow(DialogInterface dialog) {
+                    TextView text = (TextView) sweetAlertDialog.findViewById(R.id.content_text);
+                    text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                    text.setGravity(Gravity.RIGHT);
+                    final Typeface typeface = ResourcesCompat.getFont(ToolsActivity.this, R.font.byekan);
+                    text.setTypeface(typeface);
+                    TextView text2 = (TextView) sweetAlertDialog.findViewById(R.id.title_text);
+                    text2.setTypeface(typeface);
+                }
+            });
+            sweetAlertDialog.setConfirmButton("باشه", new com.andreseko.SweetAlert.SweetAlertDialog.OnSweetClickListener() {
+                @Override
+                public void onClick(com.andreseko.SweetAlert.SweetAlertDialog sweetAlertDialog) {
+                    sweetAlertDialog.dismiss();
+                }
+            });
+            sweetAlertDialog.setCancelable(true);
+            sweetAlertDialog.show();
+
+        }
+
+
     }
 
 
@@ -192,7 +277,7 @@ public class ToolsActivity extends AppCompatActivity {
 
         contentValues.put(MediaStore.Images.Media.DISPLAY_NAME, time + ".jpg");
         contentValues.put(MediaStore.Images.Media.MIME_TYPE, "image/jpg");
-        contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM"+ "/LinkShortener");
+        contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, "DCIM" + "/LinkShortener");
         Uri uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
         BitmapDrawable bitmapDrawable = (BitmapDrawable) imageview.getDrawable();
         Bitmap bitmap = bitmapDrawable.getBitmap();
