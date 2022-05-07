@@ -15,6 +15,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.andreseko.SweetAlert.SweetAlertDialog;
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String BASE_URL = "https://i.iamnovinfar.ir";
 
-    TextInputEditText editText;
+    EditText editText;
     SweetAlertDialog sweetAlertDialog;
     RelativeLayout cardView;
     String ValidData;
