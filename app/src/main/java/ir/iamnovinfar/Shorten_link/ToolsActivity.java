@@ -49,7 +49,8 @@ public class ToolsActivity extends AppCompatActivity {
     ImageView copy, share;
     File dir;
     ImageView imageview;
-    RelativeLayout open_link, generate_qrcode;
+    RelativeLayout open_link, generate_qrcode,imageview_qrcode_lay;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +102,7 @@ public class ToolsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
+                    imageview_qrcode_lay.setBackground(getResources().getDrawable(R.drawable.amir2));
                     BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                     Bitmap bitmap = barcodeEncoder.encodeBitmap(link, BarcodeFormat.QR_CODE, 400, 400);
                     imageview = (ImageView) findViewById(R.id.imageview_qrcode);
@@ -203,6 +205,7 @@ public class ToolsActivity extends AppCompatActivity {
         share = findViewById(R.id.btn_share);
         open_link = findViewById(R.id.open_link2);
         generate_qrcode = findViewById(R.id.generate_qrcode2);
+        imageview_qrcode_lay=findViewById(R.id.imageview_qrcode_lay);
 
 
     }

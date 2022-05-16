@@ -16,7 +16,9 @@
         <activity
             android:name="ir.iamnovinfar.Shorten_link.ToolsActivity"
             android:exported="false" />
-        <activity android:name="ir.iamnovinfar.Shorten_link.MainActivity">
+        <activity android:name="ir.iamnovinfar.Shorten_link.MainActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_40ssp"
         android:drawablePadding="6dp"
         android:fontFamily="@font/byekan"
         android:gravity="center|center_horizontal|bottom"
@@ -20,6 +19,8 @@
         android:textAlignment="0"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_24ssp"
+        android:layout_marginTop="@dimen/_30ssp"
+        android:layout_above="@+id/imageview_qrcode"
         android:textStyle="bold">
 
     </TextView>
@@ -29,9 +30,7 @@
         android:id="@+id/blurback"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/_10ssp"
         android:layout_marginTop="150dp"
-        android:layout_marginRight="@dimen/_10ssp"
         android:background="@drawable/blurback">
 
         <RelativeLayout
@@ -40,7 +39,7 @@
             android:layout_height="300dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_20ssp"
-            android:background="@drawable/amir2">
+            android:background="@drawable/amir3">
 
             <ImageView
                 android:id="@+id/imageview_qrcode"
@@ -75,7 +74,7 @@
                 android:text="https://amrp.com "
                 android:textAlignment="0"
                 android:textColor="#FFFFFF"
-                android:textSize="@dimen/_20ssp"
+                android:textSize="@dimen/_16ssp"
                 android:textStyle="bold">
 
             </TextView>

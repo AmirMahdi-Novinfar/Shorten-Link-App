@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.andreseko.SweetAlert.SweetAlertDialog;
@@ -63,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
     ImageSlider imageSlider;
     View gifDrawable;
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
         gifDrawable.setVisibility(View.GONE);
 
 
-//
+
+
 
 
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         imageSlider = findViewById(R.id.image_slider);
         imageSlider.setImageList(slideModels);
         imageSlider.buildDrawingCache();
+
 
     }
 
