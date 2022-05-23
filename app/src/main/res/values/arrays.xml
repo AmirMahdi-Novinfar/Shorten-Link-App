@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <integer-array name="image_id_array">
+
+        <item>@drawable/amir</item>
+        <item>@drawable/amir2</item>
+        <item>@drawable/amir3</item>
+    </integer-array>
+</resources>

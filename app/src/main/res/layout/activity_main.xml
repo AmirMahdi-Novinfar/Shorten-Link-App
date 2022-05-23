@@ -8,15 +8,11 @@
     tools:context="ir.iamnovinfar.Shorten_link.MainActivity">
 
 
-    <com.denzcoskun.imageslider.ImageSlider
+    <com.mmurphy.imagedotslider.ImageSliderView
         android:id="@+id/image_slider"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:keepScreenOn="true"
-        app:iss_auto_cycle="true"
-        app:iss_delay="0"
-        app:iss_period="5000" />
-
+        android:layout_width="match_parent"
+        app:imageResources="@array/image_id_array" />
 
     <ImageView
         android:id="@+id/logoapp_img"
@@ -31,7 +27,6 @@
         android:id="@+id/txt_asset_type_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/amirkaaa"
         android:layout_below="@+id/logoapp_img"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_10ssp"
@@ -49,12 +44,9 @@
     <RelativeLayout
         android:id="@+id/amir_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/txt_asset_type_name"
-        android:layout_alignParentBottom="true"
-
-        >
+        android:layout_centerHorizontal="true">
 
         <RelativeLayout
             android:id="@+id/amirkaaa"
@@ -63,6 +55,7 @@
             android:layout_marginLeft="@dimen/_30ssp"
             android:layout_marginTop="@dimen/_20ssp"
             android:layout_marginRight="@dimen/_30ssp"
+
             android:background="@drawable/edit_back_url">
 
 
@@ -71,6 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50ssp"
                 android:background="@drawable/edt_back"
+
                 android:drawableRight="@drawable/ic_baseline_insert_link_24"
                 android:drawablePadding="@dimen/_9ssp"
                 android:fontFamily="@font/byekan"
@@ -86,62 +80,27 @@
         </RelativeLayout>
 
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50ssp"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_30ssp"
-            android:layout_marginTop="@dimen/_10ssp"
-            android:layout_marginRight="@dimen/_30ssp"
-            android:clickable="true"
-            android:focusable="true"
-            android:layout_below="@+id/amirkaaa"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                android:background="@drawable/button_gradient">
-
-                <RelativeLayout
-                    android:id="@+id/btn_giveshorturl"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="?attr/selectableItemBackground"
-                    android:clickable="true"
-
-                    android:focusable="true">
-
-                    <TextView
-                        android:id="@+id/gradient_button_3_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-
-                        android:ellipsize="end"
-                        android:fontFamily="@font/byekan"
-                        android:lines="1"
-                        android:text="دریافت لینک کوتاه"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_19ssp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
-            </FrameLayout>
-        </androidx.cardview.widget.CardView>
-
-
     </RelativeLayout>
 
 
-
-
-    <pl.droidsonroids.gif.GifImageView
-        android:id="@+id/loading_gif"
+    <com.mmdev.progressbuttonlib.ProgressButton
+        android:id="@+id/btn_giveshorturl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/loading" />
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+
+        app:backgroundColor="#C31682AD"
+
+        app:progressColor="@android:color/holo_orange_light"
+        app:text="DONE!"
+        app:textColor="@android:color/black" />
+
+
+    // btn_giveshorturl ->id
+    // android:text="دریافت لینک کوتاه" ->text
+
 
 </RelativeLayout>
