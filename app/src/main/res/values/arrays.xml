@@ -3,8 +3,8 @@
 
     <integer-array name="image_id_array">
 
-        <item>@drawable/amir</item>
-        <item>@drawable/amir2</item>
-        <item>@drawable/amir3</item>
+        <item>@drawable/one</item>
+        <item>@drawable/two</item>
+        <item>@drawable/three</item>
     </integer-array>
 </resources>

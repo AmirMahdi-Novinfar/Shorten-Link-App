@@ -10,8 +10,9 @@
 
     <com.mmurphy.imagedotslider.ImageSliderView
         android:id="@+id/image_slider"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:keepScreenOn="true"
         app:imageResources="@array/image_id_array" />
 
     <ImageView
@@ -83,20 +84,31 @@
     </RelativeLayout>
 
 
-    <com.mmdev.progressbuttonlib.ProgressButton
+    <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
         android:id="@+id/btn_giveshorturl"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
 
-        app:backgroundColor="#C31682AD"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/button_gradient"
+        android:fontFamily="@font/byekan"
+        android:text="کوتاه کن"
 
-        app:progressColor="@android:color/holo_orange_light"
-        app:text="DONE!"
-        app:textColor="@android:color/black" />
+        android:textColor="@color/white"
+        android:textColorHint="#FFFFFF"
+        app:spinning_bar_color="@color/white"
+        android:textSize="@dimen/_18ssp"
+        android:textStyle="bold" />
+    app:spinning_bar_width="4dp" <!-- Optional -->
+    app:spinning_bar_color="#FFF" <!-- Optional -->
+    app:spinning_bar_padding="6dp" <!-- Optional -->
 
 
     // btn_giveshorturl ->id

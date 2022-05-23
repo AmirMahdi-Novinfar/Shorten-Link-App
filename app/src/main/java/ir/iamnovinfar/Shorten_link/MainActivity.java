@@ -23,12 +23,12 @@ import android.widget.RelativeLayout;
 import com.andreseko.SweetAlert.SweetAlertDialog;
 
 
+import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
 import ir.iamnovinfar.Shorten_link.Model.GsonModel.ShortenGsonModel;
 import ir.iamnovinfar.Shorten_link.MyConnection.Shorte;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
-import com.mmdev.progressbuttonlib.ProgressButton;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     String ValidData;
     ArrayList<ViewGroup> slideModels;
     CarouselView carouselView;
-    ProgressButton btn_giveshorturl;
+    CircularProgressButton btn_giveshorturl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +77,9 @@ public class MainActivity extends AppCompatActivity {
         btn_giveshorturl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btn_giveshorturl.startAnim();
-
 
                 String data = editText.getText().toString().trim();
                 if (editText.getText().length() == 0) {
-                    btn_giveshorturl.stopAnim(MainActivity.this::SetUpViews);
 
                     sweetAlertDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.ERROR_TYPE);
                     sweetAlertDialog.setTitle("آدرس را وارد کنید...");
@@ -97,13 +94,13 @@ public class MainActivity extends AppCompatActivity {
                 } else {
 
                     if (IsValidUrl(data)) {
-                        btn_giveshorturl.stopAnim(MainActivity.this::SetUpViews);
+                     //   btn_giveshorturl.stopAnim(MainActivity.this::SetUpViews);
+                        btn_giveshorturl.startAnimation();
 
                         ValidData = data;
                         GetshortLinkFromShorte(data);
 
                     } else {
-                        btn_giveshorturl.stopAnim(MainActivity.this::SetUpViews);
 
                         sweetAlertDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.ERROR_TYPE);
                         sweetAlertDialog.setTitle("آدرس به صورت اشتباه وارد شده است...");
@@ -128,14 +125,9 @@ public class MainActivity extends AppCompatActivity {
 
         editText = findViewById(R.id.edt_password_login);
         btn_giveshorturl = findViewById(R.id.btn_giveshorturl);
-        setBackgroundImageSliders();
 
     }
 
-    private void setBackgroundImageSliders() {
-
-
-    }
 
     private void GetshortLinkFromShorte(String validurlstr) {
 
@@ -166,7 +158,9 @@ public class MainActivity extends AppCompatActivity {
                     String status = gsonModel.getStatus();
                     String shorturl = gsonModel.getShortUrl();
                     String timeCreate = gsonModel.getCreatedAt();
-                    btn_giveshorturl.stopAnim(MainActivity.this::SetUpViews);
+                    btn_giveshorturl.stopAnimation();
+                    btn_giveshorturl.revertAnimation();
+
                     Intent intent = new Intent(MainActivity.this, ToolsActivity.class);
                     intent.putExtra("status", status);
                     intent.putExtra("timeCreate", timeCreate);

@@ -48,7 +48,7 @@ dependencies {
     implementation 'com.github.samanzamani:PersianDate:1.4.0'
     implementation 'com.github.f0ris.sweetalert:library:1.5.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
-    implementation 'com.github.muramrr:ProgressButton:1.2'
+    implementation 'br.com.simplepass:loading-button-android:2.2.0'
     implementation 'com.synnapps:carouselview:0.1.5'
     implementation 'com.duplex.imagedotslider:imagedotslider:1.0.2'
 
