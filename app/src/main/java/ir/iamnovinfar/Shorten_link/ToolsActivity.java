@@ -28,6 +28,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.adivery.sdk.Adivery;
 import com.andreseko.SweetAlert.SweetAlertDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.zxing.BarcodeFormat;
@@ -56,7 +57,12 @@ public class ToolsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tools);
 
+
         SetupViews();
+
+        Adivery.configure(getApplication(),"fdde4967-d1b8-42af-996b-4fde9b15ee4d");
+        Adivery.prepareInterstitialAd(this, "88db1f31-c7c1-48b3-b62d-9ffdbd8bafd5");
+        Adivery.showAd("88db1f31-c7c1-48b3-b62d-9ffdbd8bafd5");
         String link = getIntent().getStringExtra("finaldata");
         shorten_txt_url.setText(link + "");
         showMessage();

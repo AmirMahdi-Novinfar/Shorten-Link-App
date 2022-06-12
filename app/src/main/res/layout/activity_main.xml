@@ -15,6 +15,14 @@
         android:keepScreenOn="true"
         app:imageResources="@array/image_id_array" />
 
+    <com.adivery.sdk.AdiveryBannerAdView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/banner_ad"
+        android:layout_below="@+id/logoapp_img"
+        app:placement_id="73369a4a-3ae8-4a4c-bc7f-4ce621aa3874"
+        app:banner_size="banner"/>
+
     <ImageView
         android:id="@+id/logoapp_img"
         android:layout_width="150dp"
