@@ -8,6 +8,8 @@
     tools:context="ir.iamnovinfar.Shorten_link.MainActivity">
 
 
+
+
     <com.mmurphy.imagedotslider.ImageSliderView
         android:id="@+id/image_slider"
         android:layout_width="match_parent"
@@ -15,20 +17,24 @@
         android:keepScreenOn="true"
         app:imageResources="@array/image_id_array" />
 
+
     <com.adivery.sdk.AdiveryBannerAdView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/banner_ad"
-        android:layout_below="@+id/logoapp_img"
-        app:placement_id="73369a4a-3ae8-4a4c-bc7f-4ce621aa3874"
+        android:layout_centerHorizontal="true"
+        app:placement_id="cfca2781-2bcc-4486-bbc6-04a97b4823e1"
         app:banner_size="banner"/>
+
+
+
 
     <ImageView
         android:id="@+id/logoapp_img"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_90ssp"
+        android:layout_marginTop="@dimen/_70ssp"
         android:src="@drawable/logoapp"></ImageView>
 
 
@@ -38,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/logoapp_img"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_5ssp"
         android:drawablePadding="6dp"
 
         android:fontFamily="@font/byekan"
@@ -55,16 +61,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txt_asset_type_name"
+        android:layout_marginTop="@dimen/_15ssp"
+
         android:layout_centerHorizontal="true">
 
         <RelativeLayout
             android:id="@+id/amirkaaa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_30ssp"
-            android:layout_marginTop="@dimen/_20ssp"
-            android:layout_marginRight="@dimen/_30ssp"
-
+            android:layout_marginLeft="@dimen/_33ssp"
+            android:layout_marginRight="@dimen/_33ssp"
             android:background="@drawable/edit_back_url">
 
 
@@ -73,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_50ssp"
                 android:background="@drawable/edt_back"
-
+                android:textColorHint="@color/black"
                 android:drawableRight="@drawable/ic_baseline_insert_link_24"
                 android:drawablePadding="@dimen/_9ssp"
                 android:fontFamily="@font/byekan"
@@ -81,9 +87,11 @@
                 android:inputType="textUri"
                 android:padding="15dp"
                 android:textSize="@dimen/_14ssp"
-
+                android:textColor="@color/black"
 
                 />
+
+
 
 
         </RelativeLayout>
@@ -104,7 +112,7 @@
         android:layout_marginEnd="40dp"
         android:layout_marginRight="40dp"
 
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="70dp"
         android:background="@drawable/button_gradient"
         android:fontFamily="@font/byekan"
         android:text="کوتاه کن"
@@ -114,13 +122,16 @@
         app:spinning_bar_color="@color/white"
         android:textSize="@dimen/_18ssp"
         android:textStyle="bold" />
-    app:spinning_bar_width="4dp" <!-- Optional -->
-    app:spinning_bar_color="#FFF" <!-- Optional -->
-    app:spinning_bar_padding="6dp" <!-- Optional -->
 
+    <com.adivery.sdk.AdiveryBannerAdView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/banner_ad2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        app:placement_id="cfca2781-2bcc-4486-bbc6-04a97b4823e1"
+        app:banner_size="banner"/>
 
-    // btn_giveshorturl ->id
-    // android:text="دریافت لینک کوتاه" ->text
 
 
 </RelativeLayout>

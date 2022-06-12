@@ -1,9 +1,11 @@
 package ir.iamnovinfar.Shorten_link;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 
+import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ContentResolver;
@@ -11,9 +13,11 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,6 +33,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adivery.sdk.Adivery;
+import com.adivery.sdk.AdiveryAdListener;
+import com.adivery.sdk.AdiveryBannerAdView;
 import com.andreseko.SweetAlert.SweetAlertDialog;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.zxing.BarcodeFormat;
@@ -50,6 +56,7 @@ public class ToolsActivity extends AppCompatActivity {
     File dir;
     ImageView imageview;
     RelativeLayout open_link, generate_qrcode,imageview_qrcode_lay;
+    SweetAlertDialog sweetAlertDialog;
 
 
     @Override
@@ -66,6 +73,9 @@ public class ToolsActivity extends AppCompatActivity {
         String link = getIntent().getStringExtra("finaldata");
         shorten_txt_url.setText(link + "");
         showMessage();
+
+        registerReceiver(broadcastReceiver,new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+
 
 
         copy.setOnClickListener(new View.OnClickListener() {
@@ -301,6 +311,71 @@ public class ToolsActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
+    private void setupBannerAd(){
+        AdiveryBannerAdView bannerAd = findViewById(R.id.tools_banner1);
+
+        bannerAd.setBannerAdListener(new AdiveryAdListener() {
+            @Override
+            public void onAdLoaded() {
+
+            }
+
+            @Override
+            public void onError(String reason){
+            }
+
+            @Override
+            public void onAdClicked(){
+                // کاربر روی بنر کلیک کرده
+            }
+        });
+
+
+        bannerAd.setPlacementId("678fc408-1fac-48d6-8d84-66b5efd1125d");
+        bannerAd.loadAd();
+
+
+
+    }
+
+
+
+
+
+
+    public BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if (isNetworkConnected(ToolsActivity.this)){
+                setupBannerAd();
+            }else{
+                sweetAlertDialog = new SweetAlertDialog(ToolsActivity.this, SweetAlertDialog.ERROR_TYPE);
+                sweetAlertDialog.setTitle("به اینترنت وصل نیستید!!!");
+                sweetAlertDialog.setCancelable(false);
+                sweetAlertDialog.setConfirmButton("باشه", new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismiss();
+                    }
+                });
+                sweetAlertDialog.show();
+            }
+
+        }
+    };
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private static boolean isNetworkConnected(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
 
 
 }

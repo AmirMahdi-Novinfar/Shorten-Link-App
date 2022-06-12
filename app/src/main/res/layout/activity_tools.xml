@@ -23,7 +23,11 @@
         android:layout_above="@+id/imageview_qrcode"
         android:textStyle="bold">
 
+
     </TextView>
+
+
+
 
 
     <RelativeLayout
@@ -32,6 +36,15 @@
         android:layout_height="match_parent"
         android:layout_marginTop="150dp"
         android:background="@drawable/blurback">
+
+        <com.adivery.sdk.AdiveryBannerAdView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tools_banner1"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            app:placement_id="cfca2781-2bcc-4486-bbc6-04a97b4823e1"
+            app:banner_size="banner"/>
 
         <RelativeLayout
             android:id="@+id/imageview_qrcode_lay"
