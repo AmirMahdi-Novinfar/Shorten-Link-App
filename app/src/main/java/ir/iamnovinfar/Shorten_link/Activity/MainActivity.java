@@ -1,4 +1,4 @@
-package ir.iamnovinfar.Shorten_link;
+package ir.iamnovinfar.Shorten_link.Activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,9 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.adivery.sdk.Adivery;
 import com.adivery.sdk.AdiveryAdListener;
@@ -28,17 +26,16 @@ import ir.iamnovinfar.Shorten_link.Model.GsonModel.ShortenGsonModel;
 import ir.iamnovinfar.Shorten_link.MyConnection.Shorte;
 
 import com.google.gson.Gson;
-import com.synnapps.carouselview.CarouselView;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import ir.iamnovinfar.Shorten_link.PostModel.ShortLinkPostModel;
 
+import ir.iamnovinfar.Shorten_link.R;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;

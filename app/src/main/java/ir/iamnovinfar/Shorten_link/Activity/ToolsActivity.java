@@ -1,8 +1,7 @@
-package ir.iamnovinfar.Shorten_link;
+package ir.iamnovinfar.Shorten_link.Activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.BroadcastReceiver;
@@ -23,7 +22,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -36,7 +34,6 @@ import com.adivery.sdk.Adivery;
 import com.adivery.sdk.AdiveryAdListener;
 import com.adivery.sdk.AdiveryBannerAdView;
 import com.andreseko.SweetAlert.SweetAlertDialog;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
@@ -48,6 +45,7 @@ import java.util.Date;
 import java.util.Locale;
 
 
+import ir.iamnovinfar.Shorten_link.R;
 import saman.zamani.persiandate.PersianDate;
 
 public class ToolsActivity extends AppCompatActivity {

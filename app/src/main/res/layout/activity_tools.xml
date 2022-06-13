@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/toolsback"
-    tools:context="ir.iamnovinfar.Shorten_link.ToolsActivity">
+    tools:context="ir.iamnovinfar.Shorten_link.Activity.ToolsActivity">
 
     <TextView
         android:id="@+id/shorten_txt"
