@@ -61,12 +61,15 @@
         android:textSize="@dimen/_23ssp"></TextView>
 
 
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/help_icon"
-        android:layout_margin="@dimen/_10ssp"></ImageView>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10ssp"
+            android:layout_marginTop="@dimen/_10ssp"
+            android:layout_marginEnd="@dimen/_10ssp"
+            android:id="@+id/info_help"
+            android:layout_marginBottom="@dimen/_10ssp"
+            android:src="@drawable/help_icon"></ImageView>
 
 
 

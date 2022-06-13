@@ -14,6 +14,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.adivery.sdk.Adivery;
 import com.adivery.sdk.AdiveryAdListener;
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editText;
     SweetAlertDialog sweetAlertDialog;
     String ValidData;
+    ImageView info_help;
 
     CircularProgressButton btn_giveshorturl;
 
@@ -133,6 +135,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        info_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
+                    startActivity(intent);
+
+            }
+        });
+
 
     }
 
@@ -140,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
         editText = findViewById(R.id.edt_password_login);
         btn_giveshorturl = findViewById(R.id.btn_giveshorturl);
+        info_help = findViewById(R.id.info_help);
 
 
 
