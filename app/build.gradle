@@ -54,8 +54,7 @@ dependencies {
     implementation 'com.github.andreseko:sweet-alert-dialog:1.0.6'
     implementation 'com.google.code.gson:gson:2.9.0'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.24'
-    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
-//    implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
+    //implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
     implementation 'com.github.samanzamani:PersianDate:1.4.0'
     implementation 'com.github.f0ris.sweetalert:library:1.5.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
@@ -64,6 +63,8 @@ dependencies {
     implementation 'com.duplex.imagedotslider:imagedotslider:1.0.2'
     implementation 'com.adivery:sdk:4.0.0'
     implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.5.10'
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.4'
+    implementation 'com.google.zxing:core:3.3.2'
 
 
 

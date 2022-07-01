@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
@@ -22,6 +23,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -34,8 +36,9 @@ import com.adivery.sdk.Adivery;
 import com.adivery.sdk.AdiveryAdListener;
 import com.adivery.sdk.AdiveryBannerAdView;
 import com.andreseko.SweetAlert.SweetAlertDialog;
-import com.google.zxing.BarcodeFormat;
-import com.journeyapps.barcodescanner.BarcodeEncoder;
+import com.google.zxing.WriterException;
+//import com.google.zxing.BarcodeFormat;
+//import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -45,6 +48,8 @@ import java.util.Date;
 import java.util.Locale;
 
 
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGEncoder;
 import ir.iamnovinfar.Shorten_link.R;
 import saman.zamani.persiandate.PersianDate;
 
@@ -53,7 +58,7 @@ public class ToolsActivity extends AppCompatActivity {
     ImageView copy, share;
     File dir;
     ImageView imageview;
-    RelativeLayout open_link, generate_qrcode,imageview_qrcode_lay;
+    RelativeLayout open_link, generate_qrcode, imageview_qrcode_lay;
     SweetAlertDialog sweetAlertDialog;
 
 
@@ -65,15 +70,14 @@ public class ToolsActivity extends AppCompatActivity {
 
         SetupViews();
 
-        Adivery.configure(getApplication(),"fdde4967-d1b8-42af-996b-4fde9b15ee4d");
+        Adivery.configure(getApplication(), "fdde4967-d1b8-42af-996b-4fde9b15ee4d");
         Adivery.prepareInterstitialAd(this, "88db1f31-c7c1-48b3-b62d-9ffdbd8bafd5");
         Adivery.showAd("88db1f31-c7c1-48b3-b62d-9ffdbd8bafd5");
         String link = getIntent().getStringExtra("finaldata");
         shorten_txt_url.setText(link + "");
         showMessage();
 
-        registerReceiver(broadcastReceiver,new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
-
+        registerReceiver(broadcastReceiver, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
 
 
         copy.setOnClickListener(new View.OnClickListener() {
@@ -114,26 +118,51 @@ public class ToolsActivity extends AppCompatActivity {
         generate_qrcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                QRGEncoder qrgEncoder = new QRGEncoder(link, null, QRGContents.Type.TEXT, 400);
+
                 try {
+                    // Getting QR-Code as Bitmap
                     imageview_qrcode_lay.setBackground(getResources().getDrawable(R.drawable.amir2));
-                    BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
-                    Bitmap bitmap = barcodeEncoder.encodeBitmap(link, BarcodeFormat.QR_CODE, 400, 400);
+
+                    Bitmap bitmap = qrgEncoder.getBitmap();
+                    // Setting Bitmap to ImageView
                     imageview = (ImageView) findViewById(R.id.imageview_qrcode);
                     imageview.setImageBitmap(bitmap);
-
-                    //   SaveImage(bitmap, getApplicationContext());
-
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         SaveQRImageForAPI24Upper();
                     } else {
                         SaveQRImage();
                     }
+
+
                 } catch (Exception e) {
 
                 }
             }
         });
+
+
+//
+//        generate_qrcode.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//                    imageview_qrcode_lay.setBackground(getResources().getDrawable(R.drawable.amir2));
+//                    BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+//                    Bitmap bitmap = barcodeEncoder.encodeBitmap(link, BarcodeFormat.QR_CODE, 400, 400);
+//                    imageview = (ImageView) findViewById(R.id.imageview_qrcode);
+//                    imageview.setImageBitmap(bitmap);
+//
+//                    //   SaveImage(bitmap, getApplicationContext());
+//
+//
+//
+//                } catch (Exception e) {
+//
+//                }
+//            }
+//        });
     }
 
     private void showMessage() {
@@ -153,7 +182,7 @@ public class ToolsActivity extends AppCompatActivity {
 
 
         if (status.contains("New link Successfully Added !")) {
-            sweetAlertDialog=new com.andreseko.SweetAlert.SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
+            sweetAlertDialog = new com.andreseko.SweetAlert.SweetAlertDialog(this, SweetAlertDialog.SUCCESS_TYPE);
             sweetAlertDialog.setTitle("تبریک");
             sweetAlertDialog.setContentText("لینک درتاریخ " + persianDate.getShYear() + "/" + persianDate.getShMonth() + "/" + persianDate.getShDay() + " " + "کوتاه شد...");
             sweetAlertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
@@ -172,7 +201,7 @@ public class ToolsActivity extends AppCompatActivity {
             sweetAlertDialog.setConfirmButton("باشه", new com.andreseko.SweetAlert.SweetAlertDialog.OnSweetClickListener() {
                 @Override
                 public void onClick(com.andreseko.SweetAlert.SweetAlertDialog sweetAlertDialog) {
-               sweetAlertDialog.dismiss();
+                    sweetAlertDialog.dismiss();
                 }
             });
             sweetAlertDialog.setCancelable(true);
@@ -181,9 +210,9 @@ public class ToolsActivity extends AppCompatActivity {
         } else if (status.contains("Link already Exist !")) {
 
 
-            sweetAlertDialog=new com.andreseko.SweetAlert.SweetAlertDialog(this, com.andreseko.SweetAlert.SweetAlertDialog.WARNING_TYPE);
+            sweetAlertDialog = new com.andreseko.SweetAlert.SweetAlertDialog(this, com.andreseko.SweetAlert.SweetAlertDialog.WARNING_TYPE);
             sweetAlertDialog.setTitle("هشدار!");
-            sweetAlertDialog.setContentText("لینک درتاریخ" + persianDate.getShYear() + "/" + persianDate.getShMonth() + "/" + persianDate.getShDay()  + "کوتاه شده بود");
+            sweetAlertDialog.setContentText("لینک درتاریخ" + persianDate.getShYear() + "/" + persianDate.getShMonth() + "/" + persianDate.getShDay() + "کوتاه شده بود");
             sweetAlertDialog.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
                 public void onShow(DialogInterface dialog) {
@@ -218,7 +247,7 @@ public class ToolsActivity extends AppCompatActivity {
         share = findViewById(R.id.btn_share);
         open_link = findViewById(R.id.open_link2);
         generate_qrcode = findViewById(R.id.generate_qrcode2);
-        imageview_qrcode_lay=findViewById(R.id.imageview_qrcode_lay);
+        imageview_qrcode_lay = findViewById(R.id.imageview_qrcode_lay);
 
 
     }
@@ -311,9 +340,7 @@ public class ToolsActivity extends AppCompatActivity {
     }
 
 
-
-
-    private void setupBannerAd(){
+    private void setupBannerAd() {
         AdiveryBannerAdView bannerAd = findViewById(R.id.tools_banner1);
 
         bannerAd.setBannerAdListener(new AdiveryAdListener() {
@@ -323,11 +350,11 @@ public class ToolsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onError(String reason){
+            public void onError(String reason) {
             }
 
             @Override
-            public void onAdClicked(){
+            public void onAdClicked() {
                 // کاربر روی بنر کلیک کرده
             }
         });
@@ -337,22 +364,17 @@ public class ToolsActivity extends AppCompatActivity {
         bannerAd.loadAd();
 
 
-
     }
 
 
-
-
-
-
-    public BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
+    public BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            if (isNetworkConnected(ToolsActivity.this)){
+            if (isNetworkConnected(ToolsActivity.this)) {
                 setupBannerAd();
-            }else{
+            } else {
                 sweetAlertDialog = new SweetAlertDialog(ToolsActivity.this, SweetAlertDialog.ERROR_TYPE);
                 sweetAlertDialog.setTitle("به اینترنت وصل نیستید!!!");
                 sweetAlertDialog.setCancelable(false);
@@ -373,7 +395,6 @@ public class ToolsActivity extends AppCompatActivity {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
-
 
 
 }
