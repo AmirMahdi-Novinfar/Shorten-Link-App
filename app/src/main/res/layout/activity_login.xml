@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.LoginActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/firstpart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/backlogin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_35ssp"
+            android:fontFamily="@font/byekan"
+            android:text="خوش آمدید"
+            android:textColor="@color/white"
+            android:id="@+id/txt_welcome"
+            android:textSize="@dimen/_30ssp"
+
+            >
+
+
+
+        </TextView>
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/txt_welcome"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/welcomevector"></ImageView>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/twopart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/firstpart"
+        android:background="@drawable/backloginparttwo"
+        >
+
+        <EditText
+            android:id="@+id/edt_auth"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/_30ssp"
+            android:layout_marginRight="@dimen/_20ssp"
+            android:layout_marginLeft="@dimen/_20ssp"
+            android:background="@drawable/backedtlogin"
+            android:fontFamily="@font/byekan"
+            android:hint="شماره همراه خود را وارد کنید"
+            android:inputType="number"
+            android:maxLength="12"
+
+            android:paddingLeft="@dimen/_20ssp"
+            android:paddingRight="@dimen/_20ssp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+
+            >
+
+        </EditText>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/edt_auth"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="@dimen/_20ssp"
+            android:background="@drawable/backbtnlogin"
+            android:fontFamily="@font/byekan"
+            android:hint="ورود"
+            android:maxLength="11"
+            android:paddingLeft="@dimen/_20ssp"
+            android:paddingRight="@dimen/_20ssp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/_20ssp"></androidx.appcompat.widget.AppCompatButton>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

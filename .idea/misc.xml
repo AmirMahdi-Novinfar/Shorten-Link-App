@@ -3,22 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/drawable/back_about_us.xml" value="0.1685" />
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/backbtnlogin.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/backedtlogin.xml" value="0.24982817869415808" />
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/backlogin.xml" value="0.21875" />
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/backloginparttwo.xml" value="0.14583333333333334" />
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/layout/activity_login.xml" value="0.22989690721649483" />
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/layout/activity_main.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/layout/activity_splash.xml" value="0.20260416666666667" />
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/layout/activity_tools.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/drawable/blurback.xml" value="0.2055" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/drawable/button_gradient.xml" value="0.168" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/drawable/custom_editcall.xml" value="0.168" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/drawable/edit_back_url.xml" value="0.132" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/drawable/edt_back.xml" value="0.168" />
-        <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/drawable/help_icon.xml" value="0.1685" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/drawable/ic_copy.xml" value="0.152" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/drawable/ic_icons8_share.xml" value="0.152" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1745" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/drawable/imageqrcode_back.xml" value="0.1745" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/drawable/toolsback.xml" value="0.2055" />
-        <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/layout/activity_about_us.xml" value="0.253125" />
-        <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/layout/activity_main.xml" value="0.19794784095767423" />
+        <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/layout/activity_main.xml" value="0.37962962962962965" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/layout/activity_main2.xml" value="0.345" />
-        <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/layout/activity_splash.xml" value="0.19794784095767423" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/layout/activity_tools.xml" value="0.405" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/layout/main2.xml" value="0.345" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/layout/main_activity2.xml" value="0.60625" />

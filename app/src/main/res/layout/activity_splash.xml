@@ -19,11 +19,12 @@
         android:fontFamily="@font/nasalizationrg"></TextView>
 
 
-<!--    <com.aghajari.rlottie.AXrLottieImageView-->
-<!--        android:id="@+id/lottie_view"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_alignParentBottom="true"/>-->
+    <com.aghajari.rlottie.AXrLottieImageView
+        android:id="@+id/lottie_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_40ssp"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
