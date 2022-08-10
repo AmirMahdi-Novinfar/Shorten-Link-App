@@ -1,4 +1,4 @@
-package ir.iamnovinfar.Shorten_link.PostModel;
+package ir.iamnovinfar.Shorten_link.Model.PostModel;
 
 public class ShortLinkPostModel {
    private String url;

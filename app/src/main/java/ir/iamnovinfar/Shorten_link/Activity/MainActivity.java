@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ir.iamnovinfar.Shorten_link.PostModel.ShortLinkPostModel;
+import ir.iamnovinfar.Shorten_link.Model.PostModel.ShortLinkPostModel;
 
 import ir.iamnovinfar.Shorten_link.R;
 import okhttp3.OkHttpClient;
