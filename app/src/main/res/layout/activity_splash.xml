@@ -8,15 +8,14 @@
     tools:context=".Activity.SplashActivity">
 
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Linkino!"
         android:layout_centerInParent="true"
+        android:fontFamily="@font/nasalizationrg"
+        android:text="Linkino!"
         android:textColor="@color/white"
-        android:textSize="@dimen/_50ssp"
-        android:fontFamily="@font/nasalizationrg"></TextView>
+        android:textSize="@dimen/_50ssp"></TextView>
 
 
     <com.aghajari.rlottie.AXrLottieImageView

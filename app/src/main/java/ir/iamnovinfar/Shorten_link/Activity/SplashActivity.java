@@ -3,6 +3,7 @@ package ir.iamnovinfar.Shorten_link.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
@@ -25,14 +26,32 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
         setUpAnimation();
 
+        SharedPreferences sharedPreferences=getSharedPreferences("UserLoginData",MODE_PRIVATE);
+        boolean isLogin=sharedPreferences.getBoolean("isLogin",false);
+
+
+
+
         Handler handler=new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent=new Intent(SplashActivity.this,LoginActivity.class);
-                startActivity(intent);
+
+
+                if(isLogin){
+
+                    Intent intent=new Intent(SplashActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }else {
+
+                    Intent intent=new Intent(SplashActivity.this,LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
             }
-        },3000);
+        },1500);
 
 
     }
