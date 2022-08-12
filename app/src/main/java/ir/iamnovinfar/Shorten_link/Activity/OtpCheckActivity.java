@@ -1,12 +1,23 @@
 package ir.iamnovinfar.Shorten_link.Activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.telephony.SmsMessage;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -32,6 +43,7 @@ import ir.iamnovinfar.Shorten_link.Model.PostModel.CheckOtpAndGetTokenPostModel;
 import ir.iamnovinfar.Shorten_link.Model.PostModel.LoginOtpPostModel;
 import ir.iamnovinfar.Shorten_link.MyConnection.CheckOtpAndGetToken;
 import ir.iamnovinfar.Shorten_link.MyConnection.Login_sendsms;
+import ir.iamnovinfar.Shorten_link.OTP_Receiver;
 import ir.iamnovinfar.Shorten_link.R;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
@@ -48,7 +60,7 @@ public class OtpCheckActivity extends AppCompatActivity {
 
 
     TextView txt_timer, txt_resend_otp;
-    EditText edt_auth_otp;
+   public static EditText edt_auth_otp;
 
     private final String BASE_URL = "http://lnkno.ir";
     SweetAlertDialog sweetAlertDialog;
@@ -58,6 +70,8 @@ public class OtpCheckActivity extends AppCompatActivity {
     String phone;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    String edt_token;
+    String datafinal;
 
 
     @Override
@@ -112,6 +126,27 @@ public class OtpCheckActivity extends AppCompatActivity {
         });
 
 
+        requestsmspermission();
+        edt_auth_otp.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        datafinal=charSequence.toString();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editable.length()==6){
+                    checkOtpAndGetToken(phone,datafinal);
+                    setUpAnimation();
+                    lottieView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
 
     }
@@ -314,6 +349,23 @@ public class OtpCheckActivity extends AppCompatActivity {
         });
 
     }
+
+
+
+
+    private void requestsmspermission() {
+        String smspermission = Manifest.permission.RECEIVE_SMS;
+        int grant = ContextCompat.checkSelfPermission(this, smspermission);
+        // to check if read SMS permission is granted or not
+        if (grant != PackageManager.PERMISSION_GRANTED) {
+            String[] permission_list = new String[1];
+            permission_list[0] = smspermission;
+            ActivityCompat.requestPermissions(this, permission_list, 1);
+        }
+    }
+
+
+
 
 
 }

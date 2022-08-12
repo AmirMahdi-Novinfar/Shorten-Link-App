@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+
 
     <application
         android:allowBackup="true"
@@ -15,7 +17,10 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".Activity.OtpCheckActivity"
-            android:exported="false" />
+            android:exported="false" >
+
+
+        </activity>
         <activity
             android:name=".Activity.LoginActivity"
             android:exported="false" />
@@ -42,6 +47,17 @@
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
+
+
+
+        <receiver android:name=".OTP_Receiver">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"></action>
+            </intent-filter>
+        </receiver>
     </application>
+
+
+
 
 </manifest>
