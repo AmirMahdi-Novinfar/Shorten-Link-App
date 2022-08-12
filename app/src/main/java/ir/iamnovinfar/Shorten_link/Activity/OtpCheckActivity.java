@@ -135,7 +135,7 @@ public class OtpCheckActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        datafinal=charSequence.toString();
+        datafinal=charSequence.toString().trim();
             }
 
             @Override
