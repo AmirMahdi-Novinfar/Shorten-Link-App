@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,149 +8,174 @@
     tools:context="ir.iamnovinfar.Shorten_link.Activity.MainActivity">
 
 
-
-
-    <com.mmurphy.imagedotslider.ImageSliderView
-        android:id="@+id/image_slider"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:keepScreenOn="true"
-        app:imageResources="@array/image_id_array" />
+        android:layout_height="300dp"
+        android:background="@drawable/blue1"
+        app:layout_constraintBottom_toTopOf="@+id/bottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
+        <TextView
+            android:id="@+id/txt_asset_type_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            android:fontFamily="@font/byekan"
+            android:gravity="center|center_horizontal|bottom"
+            android:text="سامانه کوتاه کننده لینک"
+            android:textAlignment="0"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/_20ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.511"></TextView>
 
-    <com.adivery.sdk.AdiveryBannerAdView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/banner_ad"
-        android:layout_centerHorizontal="true"
-        app:placement_id="cfca2781-2bcc-4486-bbc6-04a97b4823e1"
-        app:banner_size="banner"/>
+        <com.adivery.sdk.AdiveryBannerAdView
+            android:id="@+id/banner_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            app:banner_size="banner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:placement_id="cfca2781-2bcc-4486-bbc6-04a97b4823e1" />
 
+        <ImageView
+            android:id="@+id/info_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/help_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
 
+        <ImageView
+            android:id="@+id/info_help2"
+            android:layout_width="34dp"
+            android:layout_height="31dp"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="24dp"
+            android:src="@drawable/ic_baseline_menu_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
 
+        <TextView
+            android:id="@+id/txt_asset_type_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="6dp"
+            android:fontFamily="@font/byekan"
+            android:gravity="center|center_horizontal|bottom"
+            android:text="لینکینو"
+            android:textAlignment="0"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/_24ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.339"></TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/logoapp_img"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_70ssp"
-        android:src="@drawable/logoapp"></ImageView>
-
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/logoapp_img"
-        android:id="@+id/textmorefilay"
-        android:layout_centerHorizontal="true">
-    <TextView
-        android:id="@+id/txt_asset_type_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_5ssp"
-        android:drawablePadding="6dp"
-        android:layout_marginLeft="@dimen/_50ssp"
-        android:fontFamily="@font/byekan"
-        android:gravity="center|center_horizontal|bottom"
-        android:text="
-&#34;به لینکینو خوش آمدید&#34;"
-        android:textAlignment="0"
-        android:textColor="#FFFFFF"
-        android:textSize="@dimen/_23ssp"></TextView>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/back_mainactivity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2">
 
 
         <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logoapp" />
+
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+            android:id="@+id/btn_giveshorturl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+
+            android:layout_margin="20dp"
+
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/button_gradient"
+            android:fontFamily="@font/byekan"
+            android:text="کوتاه کن"
+            android:textColor="@color/white"
+            android:textColorHint="#FFFFFF"
+            android:textSize="@dimen/_18ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_password_login"
+            app:spinning_bar_color="@color/white" />
+
+        <com.adivery.sdk.AdiveryBannerAdView
+            android:id="@+id/banner_ad2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10ssp"
-            android:layout_marginTop="@dimen/_10ssp"
-            android:layout_marginEnd="@dimen/_10ssp"
-            android:id="@+id/info_help"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="@dimen/_10ssp"
-            android:src="@drawable/help_icon"></ImageView>
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            app:banner_size="banner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:placement_id="cfca2781-2bcc-4486-bbc6-04a97b4823e1" />
+
+        <EditText
+            android:id="@+id/edt_password_login"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50ssp"
+            android:layout_margin="20dp"
+            android:drawableRight="@drawable/ic_baseline_insert_link_24"
+
+            android:drawablePadding="@dimen/_9ssp"
+            android:fontFamily="@font/byekan"
+            android:hint="لینک خود را وارد کنید"
+            android:inputType="textUri"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/amir_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textmorefilay"
-        android:layout_marginTop="@dimen/_15ssp"
-
-        android:layout_centerHorizontal="true">
-
-        <RelativeLayout
-            android:id="@+id/amirkaaa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_33ssp"
-            android:layout_marginRight="@dimen/_33ssp"
-            android:background="@drawable/edit_back_url">
-
-
-            <EditText
-                android:id="@+id/edt_password_login"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50ssp"
-                android:background="@drawable/edt_back"
-                android:textColorHint="@color/black"
-                android:drawableRight="@drawable/ic_baseline_insert_link_24"
-                android:drawablePadding="@dimen/_9ssp"
-                android:fontFamily="@font/byekan"
-                android:hint="لینک خود را وارد کنید"
-                android:inputType="textUri"
-                android:padding="15dp"
-                android:textSize="@dimen/_14ssp"
-                android:textColor="@color/black"
-
-                />
-
-
-
-
-        </RelativeLayout>
-
-
-    </RelativeLayout>
-
-
-    <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
-        android:id="@+id/btn_giveshorturl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginRight="40dp"
-
-        android:layout_marginBottom="70dp"
-        android:background="@drawable/button_gradient"
-        android:fontFamily="@font/byekan"
-        android:text="کوتاه کن"
-
-        android:textColor="@color/white"
-        android:textColorHint="#FFFFFF"
-        app:spinning_bar_color="@color/white"
-        android:textSize="@dimen/_18ssp"
-        android:textStyle="bold" />
-
-    <com.adivery.sdk.AdiveryBannerAdView
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/banner_ad2"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        app:placement_id="cfca2781-2bcc-4486-bbc6-04a97b4823e1"
-        app:banner_size="banner"/>
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="544dp" />
 
 
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
