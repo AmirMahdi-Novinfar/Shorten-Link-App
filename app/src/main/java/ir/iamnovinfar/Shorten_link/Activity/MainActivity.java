@@ -232,23 +232,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setupBannerAd(){
-        AdiveryBannerAdView bannerAd = findViewById(R.id.banner_ad);
-
-        bannerAd.setBannerAdListener(new AdiveryAdListener() {
-            @Override
-            public void onAdLoaded() {
-            }
-            @Override
-            public void onError(String reason){
-            }
-
-            @Override
-            public void onAdClicked(){
-                // کاربر روی بنر کلیک کرده
-            }
-        });
-        bannerAd.setPlacementId("73369a4a-3ae8-4a4c-bc7f-4ce621aa3874");
-        bannerAd.loadAd();
 
  AdiveryBannerAdView bannerAd2 = findViewById(R.id.banner_ad2);
 

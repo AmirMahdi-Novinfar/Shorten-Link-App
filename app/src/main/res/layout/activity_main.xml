@@ -38,18 +38,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.511"></TextView>
 
-        <com.adivery.sdk.AdiveryBannerAdView
-            android:id="@+id/banner_ad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
-            app:banner_size="banner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:placement_id="cfca2781-2bcc-4486-bbc6-04a97b4823e1" />
-
         <ImageView
             android:id="@+id/info_help"
             android:layout_width="wrap_content"
@@ -82,13 +70,12 @@
             android:text="لینکینو"
             android:textAlignment="0"
             android:textColor="#FFFFFF"
-            android:textSize="@dimen/_24ssp"
+            android:textSize="@dimen/_27ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.339"></TextView>
+            app:layout_constraintVertical_bias="0.36"></TextView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -175,7 +162,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="544dp" />
+        app:layout_constraintGuide_end="611dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
