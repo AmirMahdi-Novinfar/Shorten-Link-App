@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context="ir.iamnovinfar.Shorten_link.Activity.MainActivity">
 
 
@@ -102,13 +101,9 @@
             android:id="@+id/btn_giveshorturl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
 
-            android:layout_margin="20dp"
-
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="@drawable/button_gradient"
             android:fontFamily="@font/byekan"
             android:text="کوتاه کن"
@@ -116,10 +111,9 @@
             android:textColorHint="#FFFFFF"
             android:textSize="@dimen/_18ssp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edt_password_login"
             app:spinning_bar_color="@color/white" />
 
         <com.adivery.sdk.AdiveryBannerAdView
@@ -153,6 +147,13 @@
             app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="273dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

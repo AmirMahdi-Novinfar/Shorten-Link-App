@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,6 +30,8 @@ import ir.iamnovinfar.Shorten_link.MyConnection.Shorte;
 import com.google.gson.Gson;
 
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
@@ -37,7 +40,9 @@ import java.util.regex.Pattern;
 import ir.iamnovinfar.Shorten_link.Model.PostModel.ShortLinkPostModel;
 
 import ir.iamnovinfar.Shorten_link.R;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.ResponseBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -49,7 +54,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
 
-    public static final String BASE_URL = "https://i.iamnovinfar.ir";
+    public static final String BASE_URL = "http://lnkno.ir/";
 
     EditText editText;
     SweetAlertDialog sweetAlertDialog;
@@ -57,12 +62,16 @@ public class MainActivity extends AppCompatActivity {
     ImageView info_help;
 
     CircularProgressButton btn_giveshorturl;
+    SharedPreferences sharedPreferences;
+     String API_KEY;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SetUpViews();
+
         Adivery.configure(getApplication(),"fdde4967-d1b8-42af-996b-4fde9b15ee4d");
         Adivery.prepareInterstitialAd(this, "88db1f31-c7c1-48b3-b62d-9ffdbd8bafd5");
         Adivery.showAd("88db1f31-c7c1-48b3-b62d-9ffdbd8bafd5");
@@ -152,6 +161,9 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.edt_password_login);
         btn_giveshorturl = findViewById(R.id.btn_giveshorturl);
         info_help = findViewById(R.id.info_help);
+        sharedPreferences=getSharedPreferences("UserLoginData",MODE_PRIVATE);
+       API_KEY= sharedPreferences.getString("API_KEY","");
+
 
 
 
@@ -160,19 +172,28 @@ public class MainActivity extends AppCompatActivity {
 
     private void getshortLinkFromShorte(String validurlstr) {
 
-        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient.Builder okhttpbuilder = new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor)
-                .connectTimeout(20000, TimeUnit.MILLISECONDS);
-        Retrofit.Builder retrofitbuilder = new Retrofit.Builder()
-                .baseUrl(BASE_URL);
-        retrofitbuilder.build();
-        Retrofit retrofit = retrofitbuilder.client(okhttpbuilder.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient.Builder okBuilder = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @NotNull
+            @Override
+            public okhttp3.Response intercept(@NotNull Chain chain) throws IOException {
+                Request request = chain.request().newBuilder()
+                        .addHeader("Accept", "application/json")
+                        .addHeader("Authorization", "Bearer " + API_KEY)
+                        .build();
+                return chain.proceed(request);
+            }
+        }).connectTimeout(60, TimeUnit.SECONDS).callTimeout(60, TimeUnit.SECONDS).readTimeout(60, TimeUnit.SECONDS).writeTimeout(60, TimeUnit.SECONDS);
+         //   OkHttpClient.Builder okBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
+        Retrofit.Builder builderretrofit = new Retrofit.Builder();
+        builderretrofit.baseUrl(BASE_URL);
+        builderretrofit.build();
+        Retrofit retrofit = builderretrofit.client(okBuilder.build()).addConverterFactory(GsonConverterFactory.create()).build();
 
         Shorte shorte = retrofit.create(Shorte.class);
-        ShortLinkPostModel shortLinkPostModel = new ShortLinkPostModel(ValidData);
+        ShortLinkPostModel shortLinkPostModel = new ShortLinkPostModel(ValidData,sharedPreferences.getString("User_id",""));
         Call<ResponseBody> responseBodyCall = shorte.GETSHORTLINK(shortLinkPostModel);
         responseBodyCall.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -185,15 +206,15 @@ public class MainActivity extends AppCompatActivity {
                     Gson gson = new Gson();
                     ShortenGsonModel gsonModel = gson.fromJson(responsestring, ShortenGsonModel.class);
                     String status = gsonModel.getStatus();
-                    String shorturl = gsonModel.getShortUrl();
-                    String timeCreate = gsonModel.getCreatedAt();
+                    String shorturl = gsonModel.getLink().getShortUrl();
+                    String timeCreate = gsonModel.getLink().getCreatedAt();
                     btn_giveshorturl.stopAnimation();
                     btn_giveshorturl.revertAnimation();
 
                     Intent intent = new Intent(MainActivity.this, ToolsActivity.class);
                     intent.putExtra("status", status);
                     intent.putExtra("timeCreate", timeCreate);
-                    intent.putExtra("finaldata", "https://i.iamnovinfar.ir/" + shorturl);
+                    intent.putExtra("finaldata", "http://lnkno.ir/" + shorturl);
                     startActivity(intent);
 
 
