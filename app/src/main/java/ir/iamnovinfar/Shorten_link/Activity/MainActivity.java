@@ -54,7 +54,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
 
 
-    public static final String BASE_URL = "http://lnkno.ir/";
+    public static final String BASE_URL = "https://lnkno.ir/";
 
     EditText editText;
     SweetAlertDialog sweetAlertDialog;
@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(MainActivity.this, ToolsActivity.class);
                     intent.putExtra("status", status);
                     intent.putExtra("timeCreate", timeCreate);
-                    intent.putExtra("finaldata", "http://lnkno.ir/" + shorturl);
+                    intent.putExtra("finaldata", "https://lnkno.ir/" + shorturl);
                     startActivity(intent);
 
 

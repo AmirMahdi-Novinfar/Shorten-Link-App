@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText edt_phone;
     Button btn_login;
-    private final String BASE_URL = "http://lnkno.ir";
+    private final String BASE_URL = "https://lnkno.ir";
     SweetAlertDialog sweetAlertDialog;
     AXrLottieImageView lottieView;
 

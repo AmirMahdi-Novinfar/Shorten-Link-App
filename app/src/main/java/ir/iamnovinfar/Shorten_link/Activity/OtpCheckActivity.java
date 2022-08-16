@@ -62,7 +62,7 @@ public class OtpCheckActivity extends AppCompatActivity {
     TextView txt_timer, txt_resend_otp;
    public static EditText edt_auth_otp;
 
-    private final String BASE_URL = "http://lnkno.ir";
+    private final String BASE_URL = "https://lnkno.ir";
     SweetAlertDialog sweetAlertDialog;
     AXrLottieImageView lottieView;
     String API_KEY;
