@@ -1,7 +1,10 @@
 package ir.iamnovinfar.Shorten_link.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,13 +12,18 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.adivery.sdk.Adivery;
 import com.adivery.sdk.AdiveryAdListener;
@@ -27,6 +35,7 @@ import br.com.simplepass.loadingbutton.customViews.CircularProgressButton;
 import ir.iamnovinfar.Shorten_link.Model.GsonModel.ShortenGsonModel;
 import ir.iamnovinfar.Shorten_link.MyConnection.Shorte;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 
 
@@ -51,7 +60,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
     public static final String BASE_URL = "https://lnkno.ir/";
@@ -59,11 +68,15 @@ public class MainActivity extends AppCompatActivity {
     EditText editText;
     SweetAlertDialog sweetAlertDialog;
     String ValidData;
-    ImageView info_help;
+    ImageView info_help, nv_drawer;
 
     CircularProgressButton btn_giveshorturl;
     SharedPreferences sharedPreferences;
-     String API_KEY;
+    String API_KEY;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    View headernav;
+    TextView phone_header_txt;
 
 
     @Override
@@ -72,14 +85,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         SetUpViews();
 
-        Adivery.configure(getApplication(),"fdde4967-d1b8-42af-996b-4fde9b15ee4d");
+        Adivery.configure(getApplication(), "fdde4967-d1b8-42af-996b-4fde9b15ee4d");
         Adivery.prepareInterstitialAd(this, "88db1f31-c7c1-48b3-b62d-9ffdbd8bafd5");
         Adivery.showAd("88db1f31-c7c1-48b3-b62d-9ffdbd8bafd5");
-        registerReceiver(broadcastReceiver,new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
-
-
-
-
+        registerReceiver(broadcastReceiver, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
 
 
         btn_giveshorturl.setOnClickListener(new View.OnClickListener() {
@@ -88,32 +97,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if (isNetworkConnected(MainActivity.this)) {
 
-                String data = editText.getText().toString().trim();
-                if (editText.getText().length() == 0) {
-
-                    sweetAlertDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.ERROR_TYPE);
-                    sweetAlertDialog.setTitle("آدرس را وارد کنید...");
-                    sweetAlertDialog.setCancelable(false);
-                    sweetAlertDialog.setConfirmButton("باشه", new SweetAlertDialog.OnSweetClickListener() {
-                        @Override
-                        public void onClick(SweetAlertDialog sweetAlertDialog) {
-                            sweetAlertDialog.dismiss();
-                        }
-                    });
-                    sweetAlertDialog.show();
-                } else {
-
-                    if (isValidUrl(data)) {
-                        //   btn_giveshorturl.stopAnim(MainActivity.this::SetUpViews);
-                        btn_giveshorturl.startAnimation();
-
-                        ValidData = data;
-                        getshortLinkFromShorte(data);
-
-                    } else {
+                    String data = editText.getText().toString().trim();
+                    if (editText.getText().length() == 0) {
 
                         sweetAlertDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.ERROR_TYPE);
-                        sweetAlertDialog.setTitle("آدرس به صورت اشتباه وارد شده است...");
+                        sweetAlertDialog.setTitle("آدرس را وارد کنید...");
                         sweetAlertDialog.setCancelable(false);
                         sweetAlertDialog.setConfirmButton("باشه", new SweetAlertDialog.OnSweetClickListener() {
                             @Override
@@ -122,9 +110,30 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                         sweetAlertDialog.show();
+                    } else {
+
+                        if (isValidUrl(data)) {
+                            //   btn_giveshorturl.stopAnim(MainActivity.this::SetUpViews);
+                            btn_giveshorturl.startAnimation();
+
+                            ValidData = data;
+                            getshortLinkFromShorte(data);
+
+                        } else {
+
+                            sweetAlertDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.ERROR_TYPE);
+                            sweetAlertDialog.setTitle("آدرس به صورت اشتباه وارد شده است...");
+                            sweetAlertDialog.setCancelable(false);
+                            sweetAlertDialog.setConfirmButton("باشه", new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    sweetAlertDialog.dismiss();
+                                }
+                            });
+                            sweetAlertDialog.show();
+                        }
                     }
-                }
-            }else {
+                } else {
                     sweetAlertDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.ERROR_TYPE);
                     sweetAlertDialog.setTitle("به اینترنت وصل نیستید!!!");
                     sweetAlertDialog.setCancelable(false);
@@ -138,8 +147,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
 
-
-
 //
             }
         });
@@ -147,11 +154,29 @@ public class MainActivity extends AppCompatActivity {
         info_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
-                    startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
+                startActivity(intent);
+
 
             }
         });
+        headernav = navigationView.getHeaderView(0);
+         phone_header_txt=headernav.findViewById(R.id.phone_header);
+         String phone_user=sharedPreferences.getString("user_phone","");
+         phone_header_txt.setText(phone_user);
+
+        nv_drawer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                drawerLayout.openDrawer(Gravity.RIGHT);
+
+            }
+        });
+
+
+
+        navigationView.setNavigationItemSelectedListener(this);
 
 
     }
@@ -161,10 +186,11 @@ public class MainActivity extends AppCompatActivity {
         editText = findViewById(R.id.edt_password_login);
         btn_giveshorturl = findViewById(R.id.btn_giveshorturl);
         info_help = findViewById(R.id.info_help);
-        sharedPreferences=getSharedPreferences("UserLoginData",MODE_PRIVATE);
-       API_KEY= sharedPreferences.getString("API_KEY","");
-
-
+        sharedPreferences = getSharedPreferences("UserLoginData", MODE_PRIVATE);
+        API_KEY = sharedPreferences.getString("API_KEY", "");
+        drawerLayout = findViewById(R.id.drawer);
+        navigationView = findViewById(R.id.nav_view);
+        nv_drawer = findViewById(R.id.nv_drasswer);
 
 
     }
@@ -186,14 +212,14 @@ public class MainActivity extends AppCompatActivity {
                 return chain.proceed(request);
             }
         }).connectTimeout(60, TimeUnit.SECONDS).callTimeout(60, TimeUnit.SECONDS).readTimeout(60, TimeUnit.SECONDS).writeTimeout(60, TimeUnit.SECONDS);
-         //   OkHttpClient.Builder okBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
+        //   OkHttpClient.Builder okBuilder = new OkHttpClient.Builder().addInterceptor(loggingInterceptor);
         Retrofit.Builder builderretrofit = new Retrofit.Builder();
         builderretrofit.baseUrl(BASE_URL);
         builderretrofit.build();
         Retrofit retrofit = builderretrofit.client(okBuilder.build()).addConverterFactory(GsonConverterFactory.create()).build();
 
         Shorte shorte = retrofit.create(Shorte.class);
-        ShortLinkPostModel shortLinkPostModel = new ShortLinkPostModel(ValidData,sharedPreferences.getString("User_id",""));
+        ShortLinkPostModel shortLinkPostModel = new ShortLinkPostModel(ValidData, sharedPreferences.getString("User_id", ""));
         Call<ResponseBody> responseBodyCall = shorte.GETSHORTLINK(shortLinkPostModel);
         responseBodyCall.enqueue(new Callback<ResponseBody>() {
             @Override
@@ -252,20 +278,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void setupBannerAd(){
+    private void setupBannerAd() {
 
- AdiveryBannerAdView bannerAd2 = findViewById(R.id.banner_ad2);
+        AdiveryBannerAdView bannerAd2 = findViewById(R.id.banner_ad2);
 
         bannerAd2.setBannerAdListener(new AdiveryAdListener() {
             @Override
             public void onAdLoaded() {
             }
+
             @Override
-            public void onError(String reason){
+            public void onError(String reason) {
             }
 
             @Override
-            public void onAdClicked(){
+            public void onAdClicked() {
                 // کاربر روی بنر کلیک کرده
             }
         });
@@ -273,22 +300,17 @@ public class MainActivity extends AppCompatActivity {
         bannerAd2.loadAd();
 
 
-
     }
 
 
-
-
-
-
-    public BroadcastReceiver broadcastReceiver=new BroadcastReceiver() {
+    public BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @RequiresApi(api = Build.VERSION_CODES.M)
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            if (isNetworkConnected(MainActivity.this)){
+            if (isNetworkConnected(MainActivity.this)) {
                 setupBannerAd();
-            }else{
+            } else {
                 sweetAlertDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.ERROR_TYPE);
                 sweetAlertDialog.setTitle("به اینترنت وصل نیستید!!!");
                 sweetAlertDialog.setCancelable(false);
@@ -312,5 +334,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+        if(item.getItemId()==R.id.homvvve){}
+        return false;
+    }
 }

@@ -303,6 +303,7 @@ public class OtpCheckActivity extends AppCompatActivity {
                         editor.putString("API_KEY",API_KEY);
                         editor.putString("DateOfCreateUser",gsonModel.getUser().getCreatedAt());
                         editor.putString("User_id",gsonModel.getUser().getId()+"");
+                        editor.putString("user_phone",phone);
                         editor.apply();
 
                         startActivity(new Intent(OtpCheckActivity.this,MainActivity.class));

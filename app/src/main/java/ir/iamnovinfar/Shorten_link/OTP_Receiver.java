@@ -25,7 +25,6 @@ public class OTP_Receiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
 
-        Log.i(TAG, "Intent recieved: " + intent.getAction());
 
         if (intent.getAction() == SMS_RECEIVED) {
             Bundle bundle = intent.getExtras();
@@ -37,11 +36,13 @@ public class OTP_Receiver extends BroadcastReceiver {
                 }
                 if (messages.length > -1) {
                     String data=messages[0].getMessageBody();
-                    String data1= data.substring(data.indexOf(":")+1,data.lastIndexOf("ل"));
-                    Log.i(TAG,data1);
-                    OtpCheckActivity.edt_auth_otp.setText(data1.trim());
 
+                    if (data.contains("سلام \n" + "کد شما برای ورود به برنامه")){
+                        String data1 = data.substring(data.indexOf(":") + 1, data.lastIndexOf("ل"));
+                        Log.i(TAG, data1);
+                        OtpCheckActivity.edt_auth_otp.setText(data1.trim());
 
+                    }
                 }
             }
         }
