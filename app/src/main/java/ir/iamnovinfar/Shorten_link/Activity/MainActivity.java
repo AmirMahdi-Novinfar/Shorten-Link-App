@@ -60,11 +60,12 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
 
     public static final String BASE_URL = "https://lnkno.ir/";
 
+    String API_KEY;
     EditText editText;
     SweetAlertDialog sweetAlertDialog;
     String ValidData;
@@ -72,7 +73,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     CircularProgressButton btn_giveshorturl;
     SharedPreferences sharedPreferences;
-    String API_KEY;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     View headernav;
@@ -174,9 +174,49 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
 
 
-        navigationView.setNavigationItemSelectedListener(this);
+
+                    case R.id.gen_links:
+                        startActivity(new Intent(MainActivity.this,GeneratedLinks.class));
+                        break;
+
+
+                    case R.id.ruls:
+                        break;
+
+
+
+                    case R.id.aboutus:
+                        Intent intent = new Intent(MainActivity.this, AboutUsActivity.class);
+                        startActivity(intent);
+
+                        break;
+
+                    case R.id.donate:
+                        Uri uri = Uri.parse("https://idpay.ir/iamnovinfarir"); // missing 'http://' will cause crashed
+                        Intent intent3 = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent3);
+                        break;
+
+                    case R.id.website_dev:
+
+                        Uri uri2 = Uri.parse("https://iamnovinfar.ir"); // missing 'http://' will cause crashed
+                        Intent intent2 = new Intent(Intent.ACTION_VIEW, uri2);
+                        startActivity(intent2);
+                        break;
+
+
+
+                }
+                return true;
+            }
+        });
 
 
     }
@@ -334,10 +374,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        if(item.getItemId()==R.id.homvvve){}
-        return false;
-    }
+
 }

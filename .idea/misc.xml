@@ -3,24 +3,31 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable-v24/ic_baseline_insert_link.xml" value="0.1554054054054054" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/back_mainactivity.xml" value="0.25243055555555555" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/backbtnlogin.xml" value="0.14583333333333334" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/backedtlogin.xml" value="0.24982817869415808" />
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/backicon_rec_links.xml" value="0.1554054054054054" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/backlogin.xml" value="0.21875" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/backloginparttwo.xml" value="0.14583333333333334" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/blurback.xml" value="0.25243055555555555" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/edit_back_url.xml" value="0.25243055555555555" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/edt_back.xml" value="0.25243055555555555" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/ic_baseline_account_circle_24.xml" value="0.1554054054054054" />
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/ic_baseline_attach_money_24.xml" value="0.1554054054054054" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.2456081081081081" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/ic_baseline_insert_link_24.xml" value="0.2456081081081081" />
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/drawable/ic_baseline_timer_24.xml" value="0.1554054054054054" />
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/layout/activity_generated_links.xml" value="0.18057921635434412" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/layout/activity_login.xml" value="0.16527777777777777" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/layout/activity_main2.xml" value="0.14493243243243242" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/layout/activity_otp_check.xml" value="0.16527777777777777" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/layout/activity_splash.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/layout/activity_tools.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/layout/header_navigation.xml" value="0.25" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/layout/main_drawer.xml" value="0.1" />
+        <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/layout/rec_genaratedlinks.xml" value="0.5" />
         <entry key="..\:/Users/Amir/AndroidStudioProjects/Shorten-Link-App/app/src/main/res/menu/navigationmenu.xml" value="0.2" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/drawable/blurback.xml" value="0.2055" />
         <entry key="..\:/Users/amirn/Desktop/Shorten-Link-App/app/src/main/res/drawable/button_gradient.xml" value="0.168" />

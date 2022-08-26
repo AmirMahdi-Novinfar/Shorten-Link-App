@@ -2,10 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-        <item android:id="@+id/homvvve"  android:icon="@drawable/ic_baseline_home_24"
-            android:title="خانه">
 
-        </item>
 
         <item android:id="@+id/gen_links" android:icon="@drawable/ic_baseline_insert_link_24"
             android:title="لینک های ساخته شده" >
