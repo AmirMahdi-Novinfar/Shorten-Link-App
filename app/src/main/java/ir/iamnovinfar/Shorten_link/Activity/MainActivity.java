@@ -188,6 +188,9 @@ public class MainActivity extends AppCompatActivity {
 
 
                     case R.id.ruls:
+
+                        Intent intent44 = new Intent(MainActivity.this, TermsAndConditions.class);
+                        startActivity(intent44);
                         break;
 
 

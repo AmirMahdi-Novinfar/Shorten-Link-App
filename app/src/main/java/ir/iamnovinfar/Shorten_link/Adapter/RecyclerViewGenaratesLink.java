@@ -49,6 +49,7 @@ public class RecyclerViewGenaratesLink extends RecyclerView.Adapter<RecyclerView
 
         itemViewHolder.short_link.setText("https://lnkno.ir/"+getLinksGsonModel.getUserLinks().get(position).getShortUrl());
         itemViewHolder.clickCount.setText("تعداد کلیک شده: "+getLinksGsonModel.getUserLinks().get(position).getViewCount().toString());
+        itemViewHolder.orginal_link.setText(getLinksGsonModel.getUserLinks().get(position).getOriginalUrl());
 
         if (getLinksGsonModel.getUserLinks().get(position).getApproved()==1){
             itemViewHolder.link_status.setImageResource(R.drawable.ic_baseline_check_24);
@@ -93,7 +94,7 @@ public class RecyclerViewGenaratesLink extends RecyclerView.Adapter<RecyclerView
 
     public class myViewHolder extends RecyclerView.ViewHolder {
 
-        TextView short_link,clickCount;
+        TextView short_link,clickCount,orginal_link;
         ImageView link_status;
 
         public myViewHolder(@NonNull View itemView) {
@@ -101,6 +102,7 @@ public class RecyclerViewGenaratesLink extends RecyclerView.Adapter<RecyclerView
             short_link=itemView.findViewById(R.id.short_links_archive);
             clickCount=itemView.findViewById(R.id.clickCounttxt);
             link_status=itemView.findViewById(R.id.link_status);
+            orginal_link=itemView.findViewById(R.id.orginal_link);
 
 
         }

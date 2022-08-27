@@ -71,7 +71,7 @@
                 app:layout_constraintTop_toTopOf="parent"></ImageView>
 
             <TextView
-                android:id="@+id/txt_asset_type_name"
+                android:id="@+id/terms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="6dp"
