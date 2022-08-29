@@ -70,7 +70,7 @@ public class RecyclerViewGenaratesLink extends RecyclerView.Adapter<RecyclerView
                 @Override
                 public void onClick(View view) {
                     sweetAlertDialog = new SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE);
-                    sweetAlertDialog.setTitle("وضعیت لینک مسدود است لطفا با پشتبانی تماس بگیرید");
+                    sweetAlertDialog.setTitle("وضعیت لینک مسدود است لطفا با پشتیبانی تماس بگیرید");
                     sweetAlertDialog.setCancelable(false);
                     sweetAlertDialog.setConfirmButton("باشه", new SweetAlertDialog.OnSweetClickListener() {
                         @Override

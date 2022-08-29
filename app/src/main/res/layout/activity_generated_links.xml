@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="32dp"
                 app:banner_size="banner"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +61,7 @@
                 android:id="@+id/terms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
                 android:drawablePadding="6dp"
                 android:fontFamily="@font/byekan"
                 android:gravity="center|center_horizontal|bottom"
@@ -83,6 +83,40 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline2">
 
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/epty_links_lay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_baseline_hourglass_empty_24" />
+
+                <TextView
+                    android:id="@+id/empty_links"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawablePadding="6dp"
+                    android:fontFamily="@font/byekan"
+                    android:gravity="center|center_horizontal|bottom"
+                    android:text="شما هنوز لینکی را ثبت نکردید"
+                    android:textAlignment="0"
+                    android:textColor="#171616"
+                    android:textSize="@dimen/_20ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView6"></TextView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.aghajari.rlottie.AXrLottieImageView
                 android:id="@+id/lottie_view"

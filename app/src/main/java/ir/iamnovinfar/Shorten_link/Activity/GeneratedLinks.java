@@ -62,6 +62,7 @@ public class GeneratedLinks extends AppCompatActivity {
     TextView txt_links_count;
     AXrLottieImageView lottieView;
     SweetAlertDialog sweetAlertDialog;
+    ConstraintLayout epty_links_lay;
 
 
     @Override
@@ -110,6 +111,8 @@ public class GeneratedLinks extends AppCompatActivity {
         User_id = sharedPreferences.getString("User_id", "");
         recyclerView = findViewById(R.id.Generated_links_list);
         txt_links_count = findViewById(R.id.txt_links_count);
+        epty_links_lay = findViewById(R.id.epty_links_lay);
+        epty_links_lay.setVisibility(View.GONE);
 
     }
 
@@ -149,13 +152,23 @@ public class GeneratedLinks extends AppCompatActivity {
 
                         Gson gson = new Gson();
                         GetLinksGsonModel getLinksGsonModel = gson.fromJson(data,GetLinksGsonModel.class);
-                        txt_links_count.setText(getLinksGsonModel.getUserLinks().size()+" لینک توسط شما کوتاه شده است.");
 
-                        RecyclerViewGenaratesLink recyclerViewGenaratesLink = new RecyclerViewGenaratesLink(GeneratedLinks.this,getLinksGsonModel);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(GeneratedLinks.this));
-                        recyclerView.setAdapter(recyclerViewGenaratesLink);
+                        if (getLinksGsonModel.getUserLinks().size()==0){
+                            txt_links_count.setText("");
+                            lottieView.setVisibility(View.GONE);
+                            epty_links_lay.setVisibility(View.VISIBLE);
 
-                        lottieView.setVisibility(View.GONE);
+                        }else {
+                            txt_links_count.setText(getLinksGsonModel.getUserLinks().size()+" لینک توسط شما کوتاه شده است.");
+
+                            RecyclerViewGenaratesLink recyclerViewGenaratesLink = new RecyclerViewGenaratesLink(GeneratedLinks.this,getLinksGsonModel);
+                            recyclerView.setLayoutManager(new LinearLayoutManager(GeneratedLinks.this));
+                            recyclerView.setAdapter(recyclerViewGenaratesLink);
+
+                            lottieView.setVisibility(View.GONE);
+                        }
+
+
                     }else {
                         sweetAlertDialog = new SweetAlertDialog(GeneratedLinks.this, SweetAlertDialog.ERROR_TYPE);
                         sweetAlertDialog.setTitle("مشکلی در برنامه رخ داده است لطفا دوباره تلاش کنید");

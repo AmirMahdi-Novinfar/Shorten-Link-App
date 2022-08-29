@@ -268,23 +268,39 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
 
-                    String responsestring = response.body().string();
-                    Log.i("amirnovin", responsestring);
-                    Gson gson = new Gson();
-                    ShortenGsonModel gsonModel = gson.fromJson(responsestring, ShortenGsonModel.class);
-                    String status = gsonModel.getStatus();
-                    String shorturl = gsonModel.getLink().getShortUrl();
-                    String timeCreate = gsonModel.getLink().getCreatedAt();
-                    btn_giveshorturl.stopAnimation();
-                    btn_giveshorturl.revertAnimation();
+                    if (response.code()==200) {
 
-                    Intent intent = new Intent(MainActivity.this, ToolsActivity.class);
-                    intent.putExtra("status", status);
-                    intent.putExtra("timeCreate", timeCreate);
-                    intent.putExtra("finaldata", "https://lnkno.ir/" + shorturl);
-                    startActivity(intent);
+                        String responsestring = response.body().string();
+                        Log.i("amirnovin", responsestring);
+                        Gson gson = new Gson();
+                        ShortenGsonModel gsonModel = gson.fromJson(responsestring, ShortenGsonModel.class);
+                        String status = gsonModel.getStatus();
+                        String shorturl = gsonModel.getLink().getShortUrl();
+                        String timeCreate = gsonModel.getLink().getCreatedAt();
+                        btn_giveshorturl.stopAnimation();
+                        btn_giveshorturl.revertAnimation();
 
+                        Intent intent = new Intent(MainActivity.this, ToolsActivity.class);
+                        intent.putExtra("status", status);
+                        intent.putExtra("timeCreate", timeCreate);
+                        intent.putExtra("finaldata", "https://lnkno.ir/" + shorturl);
+                        startActivity(intent);
 
+                    }else {
+                        sweetAlertDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.ERROR_TYPE);
+
+                        sweetAlertDialog.setCancelable(false);
+                        sweetAlertDialog.setTitle("عملیات با خطا مواجه شد..");
+
+                        sweetAlertDialog.setConfirmButton("باشه", new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.dismiss();
+                                finish();
+                            }
+                        });
+                        sweetAlertDialog.show();
+                    }
                 } catch (IOException e) {
 
                     e.printStackTrace();
