@@ -7,8 +7,6 @@
     tools:context=".Activity.TermsAndConditions">
 
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -39,9 +37,9 @@
                 android:drawablePadding="6dp"
                 android:fontFamily="@font/byekan"
                 android:gravity="center|center_horizontal|bottom"
+                android:text="صفحه قوانین و مقررات"
                 android:textAlignment="0"
                 android:textColor="#FFFFFF"
-                android:text="صفحه قوانین و مقررات"
                 android:textSize="@dimen/_20ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,25 +76,50 @@
 
 
             <TextView
-                android:id="@+id/terms_txt"
+                android:id="@+id/website22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:drawablePadding="6dp"
+                android:layout_centerHorizontal="true"
                 android:fontFamily="@font/byekan"
-                android:gravity="center|center_horizontal|bottom"
-                android:layout_gravity="center_vertical|end"
                 android:justificationMode="inter_word"
-            android:padding="20dp"
-                android:text="هر گونه سواستفاده و استفاده غیر مجاز و غیر قانونی از اپلیکیشن جرم بوده و پیگرد قانونی دارد و کاربران محترم، اپلیکیشن لینکینو هیچ مسئولیتی درقبال اطلاعات محرمانه و شخصی شما مثل (رمز های عابر بانک و...) را ندارد لطفا مراقب اطلاعات خود باشید  "
-                android:textAlignment="0"
-                android:textColor="#000000"
-                android:textSize="@dimen/_20ssp"
+                android:lineSpacingExtra="8dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp"
+                android:paddingRight="15dp"
+                android:text="لینکینو مسئولیتی در قبال محتوای لینک‌های ایجاد شده ندارد.\nجهت حفظ کیفیت سایت و امنیت کاربر نهایی، موارد زیر در صورت شناسایی حذف خواهد شد:"
+                android:textColor="#515050"
+                android:textSize="17sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"></TextView>
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/website2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/byekan"
+                android:justificationMode="inter_word"
+                android:lineSpacingExtra="8dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp"
+                android:paddingRight="20dp"
+                android:text="
+- لینک به صفحات غیرقانونی، صفحات مسدود و یا ناموجود\n
+- لینک به سایت‌های با دامنه رایگان (فری‌نوم) و صفحات انتقالی (ریدایرکت)\n
+- لینک به صفحاتی که منجر به افشای هویت بازدیدکنندگان شود (مثل پروفایل لینکدین)\n
+- لینک دانلود مستقیم اپلیکیشن (لینکی که به محض کلیک، اپلیکیشن شروع به دانلود شود)\n
+- لینک‌های شامل الفاظ نامناسب و غیراخلاقی در آدرس کوتاه\n
+- لینک‌هایی که به صورت انبوه و غیرعادی ایجاد شده و یا اسپم شناسایی شود\n
+- لینک‌هایی که طی یک سال هیچ بازدیدی نداشته و یا یک ماه بعد ایجاد، بدون بازدید باشد\n
+لازم به ذکر است یادداشت‌های ایجاد شده توسط کاربران نیز مشمول قوانین فوق می‌گردد."
+                android:textColor="#515050"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/website22" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

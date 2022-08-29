@@ -3,7 +3,6 @@ package ir.iamnovinfar.Shorten_link.Activity;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.BroadcastReceiver;
@@ -23,7 +22,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.adivery.sdk.Adivery;
 import com.adivery.sdk.AdiveryAdListener;
@@ -299,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onClick(SweetAlertDialog sweetAlertDialog) {
                             sweetAlertDialog.dismiss();
+                            finish();
                         }
                     });
                     sweetAlertDialog.show();
@@ -308,7 +307,19 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                sweetAlertDialog = new SweetAlertDialog(MainActivity.this, SweetAlertDialog.ERROR_TYPE);
 
+                sweetAlertDialog.setCancelable(false);
+                sweetAlertDialog.setTitle("عملیات با خطا مواجه شد..");
+
+                sweetAlertDialog.setConfirmButton("باشه", new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismiss();
+                        finish();
+                    }
+                });
+                sweetAlertDialog.show();
             }
         });
     }
@@ -323,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupBannerAd() {
 
-        AdiveryBannerAdView bannerAd2 = findViewById(R.id.banner_ad2);
+        AdiveryBannerAdView bannerAd2 = findViewById(R.id.banner_ad_login);
 
         bannerAd2.setBannerAdListener(new AdiveryAdListener() {
             @Override

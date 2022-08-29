@@ -39,7 +39,7 @@
             android:name=".Activity.AboutUsActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.MaterialComponents.Dialog" />
+            android:theme="@style/NoTitleDialog" />
         <activity
             android:name=".Activity.ToolsActivity"
             android:exported="false"

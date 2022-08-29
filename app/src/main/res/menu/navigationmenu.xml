@@ -12,22 +12,27 @@
         <item android:id="@+id/ruls" android:icon="@drawable/ic_baseline_rule_24"
             android:title="قوانین ومقررات" >
 
+
+
         </item>
+
+    <item android:id="@+id/website_dev" android:icon="@drawable/ic_baseline_web_24"
+        android:title="وبسایت برنامه نویس" />
+
+    <item android:id="@+id/donate" android:icon="@drawable/ic_baseline_attach_money_24"
+        android:title="حمایت از ما" >
+
+    </item>
 
         <item android:id="@+id/aboutus" android:icon="@drawable/ic_baseline_supervised_user_circle_24"
             android:title="درباره برنامه" >
 
         </item>
 
-        <item android:id="@+id/donate" android:icon="@drawable/ic_baseline_attach_money_24"
-            android:title="حمایت از ما" >
 
-        </item>
 
-  <item android:id="@+id/website_dev" android:icon="@drawable/ic_baseline_web_24"
-            android:title="وبسایت برنامه نویس" >
 
-  </item>
+
 
 
 </menu>

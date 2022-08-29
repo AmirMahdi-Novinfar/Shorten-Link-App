@@ -1,9 +1,15 @@
 package ir.iamnovinfar.Shorten_link.Activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +17,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.adivery.sdk.Adivery;
+import com.adivery.sdk.AdiveryAdListener;
+import com.adivery.sdk.AdiveryBannerAdView;
 import com.aghajari.rlottie.AXrLottie;
 import com.aghajari.rlottie.AXrLottieDrawable;
 import com.aghajari.rlottie.AXrLottieImageView;
@@ -48,6 +57,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         setupViews();
+        Adivery.configure(getApplication(), "fdde4967-d1b8-42af-996b-4fde9b15ee4d");
+        registerReceiver(broadcastReceiver, new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE"));
+
         Window window = this.getWindow();
 
 // clear FLAG_TRANSLUCENT_STATUS flag:
@@ -62,18 +74,33 @@ public class LoginActivity extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String dataphone = edt_phone.getText().toString().trim();
+
+                if (isNetworkConnected(LoginActivity.this)) {
+                    String dataphone = edt_phone.getText().toString().trim();
 
 
-                if (validPhone(dataphone)) {
-                    setUpAnimation();
-                    sendLoginSms(dataphone);
+                    if (validPhone(dataphone)) {
+                        setUpAnimation();
+                        sendLoginSms(dataphone);
 
 
-                } else {
+                    } else {
 
+                        sweetAlertDialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE);
+                        sweetAlertDialog.setTitle("شماره وارد شده اشتباه است..");
+                        sweetAlertDialog.setCancelable(false);
+                        sweetAlertDialog.setConfirmButton("باشه", new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.dismiss();
+                            }
+                        });
+                        sweetAlertDialog.show();
+                    }
+
+                }else {
                     sweetAlertDialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE);
-                    sweetAlertDialog.setTitle("شماره وارد شده اشتباه است..");
+                    sweetAlertDialog.setTitle("به اینترنت وصل نیستید!!!");
                     sweetAlertDialog.setCancelable(false);
                     sweetAlertDialog.setConfirmButton("باشه", new SweetAlertDialog.OnSweetClickListener() {
                         @Override
@@ -83,11 +110,35 @@ public class LoginActivity extends AppCompatActivity {
                     });
                     sweetAlertDialog.show();
                 }
+
             }
         });
 
 
     }
+    public BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @RequiresApi(api = Build.VERSION_CODES.M)
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if (isNetworkConnected(LoginActivity.this)) {
+                setupBannerAd();
+            } else {
+                sweetAlertDialog = new SweetAlertDialog(LoginActivity.this, SweetAlertDialog.ERROR_TYPE);
+                sweetAlertDialog.setTitle("به اینترنت وصل نیستید!!!");
+                sweetAlertDialog.setCancelable(false);
+                sweetAlertDialog.setConfirmButton("باشه", new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismiss();
+                    }
+                });
+                sweetAlertDialog.show();
+            }
+
+        }
+    };
+
 
     private void setupViews() {
         edt_phone = findViewById(R.id.edt_auth);
@@ -172,4 +223,38 @@ public class LoginActivity extends AppCompatActivity {
                 .build());
         lottieView.playAnimation();
     }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private static boolean isNetworkConnected(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
+    private void setupBannerAd() {
+
+        AdiveryBannerAdView bannerAd2 = findViewById(R.id.banner_ad_login);
+
+        bannerAd2.setBannerAdListener(new AdiveryAdListener() {
+            @Override
+            public void onAdLoaded() {
+            }
+
+            @Override
+            public void onError(String reason) {
+            }
+
+            @Override
+            public void onAdClicked() {
+                // کاربر روی بنر کلیک کرده
+            }
+        });
+        bannerAd2.setPlacementId("c67a6646-ad07-41fe-8b0f-246ce5473e3f");
+        bannerAd2.loadAd();
+
+
+    }
+
+
+
 }

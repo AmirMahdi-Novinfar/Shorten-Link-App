@@ -47,6 +47,18 @@
         android:layout_below="@id/firstpart"
         android:background="@drawable/backloginparttwo">
 
+        <com.adivery.sdk.AdiveryBannerAdView
+            android:id="@+id/banner_ad_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            app:banner_size="banner"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:placement_id="cfca2781-2bcc-4486-bbc6-04a97b4823e1" />
+
         <EditText
             android:id="@+id/edt_auth"
             android:layout_width="match_parent"

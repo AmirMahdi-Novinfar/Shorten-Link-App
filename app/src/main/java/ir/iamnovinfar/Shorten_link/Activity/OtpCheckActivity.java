@@ -60,7 +60,7 @@ public class OtpCheckActivity extends AppCompatActivity {
 
 
     TextView txt_timer, txt_resend_otp;
-   public static EditText edt_auth_otp;
+    public static EditText edt_auth_otp;
 
     private final String BASE_URL = "https://lnkno.ir";
     SweetAlertDialog sweetAlertDialog;
@@ -72,6 +72,7 @@ public class OtpCheckActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     String edt_token;
     String datafinal;
+    Timer timer;
 
 
     @Override
@@ -103,10 +104,10 @@ public class OtpCheckActivity extends AppCompatActivity {
         btn_login_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
-                String edt_token=edt_auth_otp.getText().toString().trim();
-                
-                if (edt_token.isEmpty()){
+
+                String edt_token = edt_auth_otp.getText().toString().trim();
+
+                if (edt_token.isEmpty()) {
                     sweetAlertDialog = new SweetAlertDialog(OtpCheckActivity.this, SweetAlertDialog.ERROR_TYPE);
                     sweetAlertDialog.setTitle("مقداری را وارد کنید...");
                     sweetAlertDialog.setCancelable(false);
@@ -117,8 +118,8 @@ public class OtpCheckActivity extends AppCompatActivity {
                         }
                     });
                     sweetAlertDialog.show();
-                }else {
-                    checkOtpAndGetToken(phone,edt_token);
+                } else {
+                    checkOtpAndGetToken(phone, edt_token);
                     setUpAnimation();
                     lottieView.setVisibility(View.VISIBLE);
                 }
@@ -135,13 +136,13 @@ public class OtpCheckActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-        datafinal=charSequence.toString().trim();
+                datafinal = charSequence.toString().trim();
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if (editable.length()==6){
-                    checkOtpAndGetToken(phone,datafinal);
+                if (editable.length() == 6) {
+                    checkOtpAndGetToken(phone, datafinal);
                     setUpAnimation();
                     lottieView.setVisibility(View.VISIBLE);
                 }
@@ -161,10 +162,8 @@ public class OtpCheckActivity extends AppCompatActivity {
         txt_resend_otp.setEnabled(false);
         txt_resend_otp.setTextColor(Color.GRAY);
         phone = getIntent().getStringExtra("phone");
-        sharedPreferences=getSharedPreferences("UserLoginData",MODE_PRIVATE);
-        editor=sharedPreferences.edit();
-
-
+        sharedPreferences = getSharedPreferences("UserLoginData", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
 
     }
@@ -173,7 +172,7 @@ public class OtpCheckActivity extends AppCompatActivity {
     private void setupTimer() {
 
 
-        Timer timer = new TimerBuilder()
+        timer = new TimerBuilder()
                 // Set start time
                 .startTime(2, TimeUnit.MINUTES)
                 // Set the initial format
@@ -243,8 +242,23 @@ public class OtpCheckActivity extends AppCompatActivity {
                         sweetAlertDialog.show();
 
 
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
+
+                        sweetAlertDialog = new SweetAlertDialog(OtpCheckActivity.this, SweetAlertDialog.ERROR_TYPE);
+
+                        sweetAlertDialog.setCancelable(false);
+                        sweetAlertDialog.setTitle("عملیات با خطا مواجه شد..");
+
+                        sweetAlertDialog.setConfirmButton("باشه", new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.dismiss();
+                            }
+                        });
+                        sweetAlertDialog.show();
+
+
                     }
 
                 }
@@ -253,7 +267,18 @@ public class OtpCheckActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
+                sweetAlertDialog = new SweetAlertDialog(OtpCheckActivity.this, SweetAlertDialog.ERROR_TYPE);
 
+                sweetAlertDialog.setCancelable(false);
+                sweetAlertDialog.setTitle("عملیات با خطا مواجه شد..");
+
+                sweetAlertDialog.setConfirmButton("باشه", new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismiss();
+                    }
+                });
+                sweetAlertDialog.show();
             }
         });
     }
@@ -267,7 +292,7 @@ public class OtpCheckActivity extends AppCompatActivity {
         lottieView.playAnimation();
     }
 
-    private void checkOtpAndGetToken(String phonecheck,String token) {
+    private void checkOtpAndGetToken(String phonecheck, String token) {
 
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
@@ -290,29 +315,29 @@ public class OtpCheckActivity extends AppCompatActivity {
 
                 try {
                     String loginissuccess = response.body().string();
-                    boolean ISLOGIN=false;
+                    boolean ISLOGIN = false;
 
-                    if (response.code() == 201){
-                        ISLOGIN=true;
+                    if (response.code() == 201) {
+                        timer.stop();
+                        ISLOGIN = true;
                         Gson gson = new Gson();
                         GetTokenGsonModel gsonModel = gson.fromJson(loginissuccess, GetTokenGsonModel.class);
                         API_KEY = gsonModel.getApiKey();
                         lottieView.stopAnimation();
                         lottieView.setVisibility(View.GONE);
-                        editor.putBoolean("isLogin",ISLOGIN);
-                        editor.putString("API_KEY",API_KEY);
-                        editor.putString("DateOfCreateUser",gsonModel.getUser().getCreatedAt());
-                        editor.putString("User_id",gsonModel.getUser().getId()+"");
-                        editor.putString("user_phone",phone);
+                        editor.putBoolean("isLogin", ISLOGIN);
+                        editor.putString("API_KEY", API_KEY);
+                        editor.putString("DateOfCreateUser", gsonModel.getUser().getCreatedAt());
+                        editor.putString("User_id", gsonModel.getUser().getId() + "");
+                        editor.putString("user_phone", phone);
                         editor.apply();
 
-                        startActivity(new Intent(OtpCheckActivity.this,MainActivity.class));
+                        startActivity(new Intent(OtpCheckActivity.this, MainActivity.class));
                         finish();
 
 
-
                     } else if (response.code() == 200) {
-                        ISLOGIN=false;
+                        ISLOGIN = false;
 
                         lottieView.stopAnimation();
                         lottieView.setVisibility(View.GONE);
@@ -327,17 +352,32 @@ public class OtpCheckActivity extends AppCompatActivity {
                             @Override
                             public void onClick(SweetAlertDialog sweetAlertDialog) {
                                 sweetAlertDialog.dismiss();
+                                finish();
                             }
                         });
                         sweetAlertDialog.show();
 
 
-
                     }
 
 
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
+
+
+                    sweetAlertDialog = new SweetAlertDialog(OtpCheckActivity.this, SweetAlertDialog.ERROR_TYPE);
+
+                    sweetAlertDialog.setCancelable(false);
+                    sweetAlertDialog.setTitle("عملیات با خطا مواجه شد..");
+
+                    sweetAlertDialog.setConfirmButton("باشه", new SweetAlertDialog.OnSweetClickListener() {
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            sweetAlertDialog.dismiss();
+                            finish();
+                        }
+                    });
+                    sweetAlertDialog.show();
                 }
 
 
@@ -346,12 +386,23 @@ public class OtpCheckActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
 
+                sweetAlertDialog = new SweetAlertDialog(OtpCheckActivity.this, SweetAlertDialog.ERROR_TYPE);
+
+                sweetAlertDialog.setCancelable(false);
+                sweetAlertDialog.setTitle("عملیات با خطا مواجه شد..");
+
+                sweetAlertDialog.setConfirmButton("باشه", new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismiss();
+                        finish();
+                    }
+                });
+                sweetAlertDialog.show();
             }
         });
 
     }
-
-
 
 
     private void requestsmspermission() {
@@ -364,9 +415,6 @@ public class OtpCheckActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, permission_list, 1);
         }
     }
-
-
-
 
 
 }

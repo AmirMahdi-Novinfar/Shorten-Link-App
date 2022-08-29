@@ -30,6 +30,19 @@
             app:layout_constraintVertical_bias="0.0">
 
 
+            <com.adivery.sdk.AdiveryBannerAdView
+                android:id="@+id/banner_ad_links"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                app:banner_size="banner"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:placement_id="cfca2781-2bcc-4486-bbc6-04a97b4823e1" />
+
             <TextView
                 android:id="@+id/txt_links_count"
                 android:layout_width="wrap_content"
@@ -40,16 +53,15 @@
                 android:textAlignment="0"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/_20ssp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.465"></TextView>
+                app:layout_constraintTop_toBottomOf="@+id/terms"></TextView>
 
             <TextView
                 android:id="@+id/terms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:drawablePadding="6dp"
                 android:fontFamily="@font/byekan"
                 android:gravity="center|center_horizontal|bottom"
@@ -57,11 +69,9 @@
                 android:textAlignment="0"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/_27ssp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.275"></TextView>
+                app:layout_constraintTop_toBottomOf="@+id/banner_ad_links"></TextView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
